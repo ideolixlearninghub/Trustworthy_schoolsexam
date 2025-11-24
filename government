@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Trustworthy College - Government CBT Exam</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f3e9;
+            color: #5d4037;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        /* Dimmed background overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            opacity: 0.4; /* Dimmed background */
+            z-index: -1;
+            transition: background-image 1.5s ease-in-out;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 0 20px rgba(93, 64, 55, 0.2);
+            border-radius: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Header - Only logo */
+        .header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #d7ccc8;
+            margin-bottom: 25px;
+        }
+        
+        .logo {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+        
+        /* Sections */
+        .section {
+            display: none;
+            padding: 20px;
+        }
+        
+        .active {
+            display: block;
+        }
+        
+        /* Welcome message */
+        .welcome-message {
+            background-color: #ffccbc;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 17px;
+            line-height: 1.8;
+            color: #5d4037;
+            border-left: 5px solid #8d6e63;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background-color: #8d6e63;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px 5px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn:hover {
+            background-color: #6d4c41;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn:focus {
+            outline: 2px solid #ffab91;
+            outline-offset: 2px;
+        }
+        
+        .btn-secondary {
+            background-color: #a1887f;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #8d6e63;
+        }
+        
+        .btn-success {
+            background-color: #5d8c5a;
+        }
+        
+        .btn-success:hover {
+            background-color: #4a6c47;
+        }
+        
+        .btn-danger {
+            background-color: #d32f2f;
+        }
+        
+        .btn-danger:hover {
+            background-color: #b71c1c;
+        }
+        
+        .btn-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        /* Form elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #5d4037;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d7ccc8;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #faf5f0;
+            transition: border 0.3s;
+        }
+        
+        input[type="text"]:focus {
+            border-color: #8d6e63;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(141, 110, 99, 0.2);
+        }
+        
+        .error-message {
+            color: #d32f2f;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        /* Instructions */
+        .instructions {
+            background-color: #f5ebe9;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 5px solid #8d6e63;
+        }
+        
+        .instructions h3 {
+            margin-bottom: 15px;
+            color: #5d4037;
+        }
+        
+        .instructions ul {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+        }
+        
+        /* Exam interface */
+        .exam-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #d7ccc8;
+        }
+        
+        .student-info {
+            font-size: 22px;
+            font-weight: bold;
+            color: #5d4037;
+            margin-bottom: 15px;
+        }
+        
+        .exam-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .question-counter {
+            font-size: 16px;
+            color: #8d6e63;
+            font-weight: 600;
+        }
+        
+        .timer-container {
+            background: #5d4037;
+            color: #ffccbc;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            display: none;
+        }
+        
+        .submit-container {
+            display: none;
+        }
+        
+        .exam-content {
+            margin-bottom: 30px;
+        }
+        
+        .question-text {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #5d4037;
+            line-height: 1.5;
+        }
+        
+        .options-container {
+            margin-left: 10px;
+        }
+        
+        .option {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+        
+        .option:hover {
+            background-color: #f5ebe9;
+        }
+        
+        .option input {
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+        
+        .option label {
+            font-weight: normal;
+            margin-bottom: 0;
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        /* Question navigation */
+        .question-navigation {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #d7ccc8;
+        }
+        
+        .question-navigation h3 {
+            margin-bottom: 15px;
+            color: #5d4037;
+            text-align: center;
+        }
+        
+        .question-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .question-number {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #d7ccc8;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .question-number:hover {
+            background-color: #bcaaa4;
+        }
+        
+        .question-number.current {
+            background-color: #8d6e63;
+            color: white;
+        }
+        
+        .question-number.answered {
+            background-color: #a5d6a7;
+            color: #2e7d32;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        /* Results */
+        .results-container {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .feedback {
+            font-size: 18px;
+            margin: 20px 0;
+            color: #5d4037;
+        }
+        
+        .submission-status {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f5e9;
+            border-radius: 8px;
+            color: #2e7d32;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .question-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            
+            .exam-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .navigation-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header with logo only -->
+        <div class="header">
+            <img src="https://raw.githubusercontent.com/ideolixlearninghub/Trustworthy_schoolsexam/main/The%20trustworthy%20school%20logo.jpg" 
+                 alt="The Trustworthy College logo" class="logo">
+        </div>
+        
+        <!-- Welcome Section -->
+        <section id="welcome-section" class="section active">
+            <div class="welcome-message">
+                "Welcome to The Trustworthy College. We pray this examination helps you demonstrate the knowledge and virtues we nurture: honesty, diligence and piety. Best of luck."
+            </div>
+            <div class="btn-container">
+                <button id="start-exam-btn" class="btn">Start Examination</button>
+            </div>
+        </section>
+        
+        <!-- Student Information Section -->
+        <section id="student-info-section" class="section">
+            <h2>Student Information</h2>
+            <p>Please provide your details to continue with the examination.</p>
+            
+            <form id="student-info-form">
+                <div class="form-group">
+                    <label for="first-name">First Name *</label>
+                    <input type="text" id="first-name" required>
+                    <div class="error-message" id="first-name-error">First name is required</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="middle-name">Middle Name *</label>
+                    <input type="text" id="middle-name" required>
+                    <div class="error-message" id="middle-name-error">Middle name is required</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="last-name">Last Name *</label>
+                    <input type="text" id="last-name" required>
+                    <div class="error-message" id="last-name-error">Last name is required</div>
+                </div>
+                
+                <div class="btn-container">
+                    <button type="button" id="back-to-welcome" class="btn btn-secondary">Back</button>
+                    <button type="button" id="continue-to-instructions" class="btn">Continue</button>
+                </div>
+            </form>
+        </section>
+        
+        <!-- Instructions Section -->
+        <section id="instructions-section" class="section">
+            <h2>Examination Instructions</h2>
+            
+            <div class="instructions">
+                <h3>Important Notes:</h3>
+                <ul>
+                    <li>This examination consists of 60 multiple-choice questions.</li>
+                    <li>You have 60 minutes to complete this examination (1 minute per question).</li>
+                    <li>Answer all questions to the best of your ability.</li>
+                    <li>Navigate between questions using the Previous and Next buttons or the question grid.</li>
+                    <li>Answered questions will be marked with green in the question grid.</li>
+                    <li>Once you submit your answers, you cannot change them.</li>
+                    <li>Ensure you have a stable internet connection throughout the examination.</li>
+                    <li>Any form of malpractice will lead to disqualification.</li>
+                </ul>
+            </div>
+            
+            <div class="btn-container">
+                <button type="button" id="back-to-student-info" class="btn btn-secondary">Back</button>
+                <button type="button" id="begin-test" class="btn">Begin Test</button>
+            </div>
+        </section>
+        
+        <!-- Exam Interface Section -->
+        <section id="exam-section" class="section">
+            <div class="exam-header">
+                <div class="student-info" id="display-student-name"></div>
+                <div class="exam-controls">
+                    <div class="question-counter" id="question-counter">Question 1 of 60</div>
+                    <div class="timer-container" id="timer-container">
+                        Time Left: <span id="timer">60:00</span>
+                    </div>
+                    <div class="submit-container" id="submit-container">
+                        <button type="button" id="submit-exam" class="btn btn-success">Submit Exam</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="exam-content">
+                <div class="question-text" id="question-text"></div>
+                
+                <div class="options-container" id="options-container">
+                    <!-- Options will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Question navigation grid after question content -->
+            <div class="question-navigation">
+                <h3>Question Navigation</h3>
+                <div class="question-grid" id="question-grid">
+                    <!-- Question numbers will be populated by JavaScript -->
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button type="button" id="prev-question" class="btn btn-secondary">Previous</button>
+                    <button type="button" id="next-question" class="btn">Next</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Results Section -->
+        <section id="results-section" class="section">
+            <div class="results-container">
+                <h2>Examination Completed</h2>
+                <div class="student-info" id="results-student-name"></div>
+                <div class="subject" id="results-subject">Government</div>
+                
+                <div class="feedback" id="feedback-message">
+                    Thank you for completing the examination. Your results have been submitted successfully.
+                </div>
+                
+                <div class="submission-status" id="submission-status">
+                    Your score has been successfully submitted to the examination board.
+                </div>
+                
+                <div class="btn-container">
+                    <button type="button" id="restart-exam" class="btn">Take Another Exam</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // SUBJECT: Government
+        const originalQuestions = [
+            {
+                question: "Government can best be defined as the body that ______.",
+                options: ["Makes and enforces laws", "Registers voters", "Punishes offenders", "Controls teachers"],
+                answer: "A"
+            },
+            {
+                question: "The primary purpose of government is ______.",
+                options: ["To create wealth", "To maintain law and order", "To collect taxes", "To promote tourism"],
+                answer: "B"
+            },
+            {
+                question: "The organ of government responsible for making laws is the ______.",
+                options: ["Judiciary", "Executive", "Legislature", "Police"],
+                answer: "C"
+            },
+            {
+                question: "Which of the following performs judicial functions?",
+                options: ["Parliament", "Court", "Army", "Ministry"],
+                answer: "B"
+            },
+            {
+                question: "A constitution is best described as ______.",
+                options: ["A book of political parties", "Rules and regulations guiding a state", "A military decree", "A set of customs only"],
+                answer: "B"
+            },
+            {
+                question: "The system of government where power is shared between central and component units is ______.",
+                options: ["Unitary", "Confederal", "Federal", "Parliamentary"],
+                answer: "C"
+            },
+            {
+                question: "Rule of law refers to ______.",
+                options: ["Rule by the king", "Supremacy of the law", "Rule of the army", "Rule of the wealthy"],
+                answer: "B"
+            },
+            {
+                question: "Which of these is not a characteristic of democracy?",
+                options: ["Free and fair elections", "Popular participation", "Military dictatorship", "Majority rule"],
+                answer: "C"
+            },
+            {
+                question: "A coup d'état refers to ______.",
+                options: ["Sudden overthrow of government", "Election malpractices", "Act of voting", "Court judgement"],
+                answer: "A"
+            },
+            {
+                question: "Which organ interprets laws?",
+                options: ["Judiciary", "Executive", "Legislature", "Police"],
+                answer: "A"
+            },
+            {
+                question: "Sovereignty means ______.",
+                options: ["Ability to trade", "Supreme power of the state", "Political party control", "Right to vote"],
+                answer: "B"
+            },
+            {
+                question: "A unitary system concentrates power at the ______.",
+                options: ["Local level", "Federal level", "Army", "Central government"],
+                answer: "D"
+            },
+            {
+                question: "Which of the following is a type of constitution?",
+                options: ["Written", "Obeyed", "Questioned", "Ethnic"],
+                answer: "A"
+            },
+            {
+                question: "Public opinion means ______.",
+                options: ["Private thoughts", "Opinion of few people", "Views of the majority", "Court judgement"],
+                answer: "C"
+            },
+            {
+                question: "Which of the following is a function of political parties?",
+                options: ["Conducting census", "Recruiting leaders", "Printing money", "Judging cases"],
+                answer: "B"
+            },
+            {
+                question: "Totalitarianism means ______.",
+                options: ["Government by elected leaders", "Government by intellectuals", "Government controls all aspects of life", "Rule by tradition"],
+                answer: "C"
+            },
+            {
+                question: "Universal adult suffrage means ______.",
+                options: ["Only men vote", "Only graduates vote", "All qualified adults vote", "Only taxpayers vote"],
+                answer: "C"
+            },
+            {
+                question: "A pressure group aims to ______.",
+                options: ["Take over government", "Influence government policy", "Conduct elections", "Make laws"],
+                answer: "B"
+            },
+            {
+                question: "Separation of powers was popularized by ______.",
+                options: ["Karl Marx", "Montesquieu", "Plato", "Rawlings"],
+                answer: "B"
+            },
+            {
+                question: "Franchise means the right to ______.",
+                options: ["Speak", "Vote", "Travel", "School"],
+                answer: "B"
+            },
+            {
+                question: "A citizen is a person who ______.",
+                options: ["Lives in a country only", "Has rights and duties in a state", "Speaks the language", "Pays taxes"],
+                answer: "B"
+            },
+            {
+                question: "One way of acquiring citizenship is ______.",
+                options: ["Bribery", "Marriage", "Traveling", "Buying property"],
+                answer: "B"
+            },
+            {
+                question: "Naturalization refers to ______.",
+                options: ["Being born in a country", "Becoming a citizen voluntarily", "Living illegally", "Studying abroad"],
+                answer: "B"
+            },
+            {
+                question: "Civic rights include ______.",
+                options: ["Paying taxes", "Voting", "Serving in army", "Obeying laws"],
+                answer: "B"
+            },
+            {
+                question: "Civic duties are ______.",
+                options: ["Rights", "Responsibilities", "Salaries", "Court cases"],
+                answer: "B"
+            },
+            {
+                question: "Which of the following is a civic duty?",
+                options: ["Contesting elections", "Paying taxes", "Issuing passports", "Declaring war"],
+                answer: "B"
+            },
+            {
+                question: "The constitution protects ______.",
+                options: ["Foreigners only", "Human rights", "Criminals", "Workers alone"],
+                answer: "B"
+            },
+            {
+                question: "The right to life can be denied by ______.",
+                options: ["Nobody", "Armed robbers", "Court of law", "Teachers"],
+                answer: "C"
+            },
+            {
+                question: "The right to fair hearing is a ______ right.",
+                options: ["Political", "Legal", "Social", "Economic"],
+                answer: "B"
+            },
+            {
+                question: "Which right is suspended during war?",
+                options: ["Right to vote", "Freedom of movement", "Right to education", "Public service"],
+                answer: "B"
+            },
+            {
+                question: "A good citizen must ______.",
+                options: ["Evade taxes", "Obey laws", "Insult leaders", "Reject voting"],
+                answer: "B"
+            },
+            {
+                question: "The rule of law protects citizens from ______.",
+                options: ["Equal rights", "Abuse of power", "Elections", "Groups"],
+                answer: "B"
+            },
+            {
+                question: "The principle of equality before the law means ______.",
+                options: ["Rich treated differently", "All citizens treated equally", "Police above the law", "Judges not accountable"],
+                answer: "B"
+            },
+            {
+                question: "A limitation to rights occurs when a person ______.",
+                options: ["Votes", "Breaks the law", "Requests justice", "Travels abroad"],
+                answer: "B"
+            },
+            {
+                question: "A good citizen must not ______.",
+                options: ["Pay tax", "Break laws", "Go to school", "Obey leaders"],
+                answer: "B"
+            },
+            {
+                question: "Drug abuse violates a citizen's ______.",
+                options: ["Right to clean environment", "Responsibility to obey laws", "Right to vote", "Freedom of speech"],
+                answer: "B"
+            },
+            {
+                question: "Voting is a ______.",
+                options: ["Right", "Tax", "Gift", "Punishment"],
+                answer: "A"
+            },
+            {
+                question: "The legal way to settle disputes is through the ______.",
+                options: ["Family", "Court", "Army", "Strikes"],
+                answer: "B"
+            },
+            {
+                question: "A responsible citizen must always ______.",
+                options: ["Destroy public property", "Protect public property", "Break rules", "Ignore duties"],
+                answer: "B"
+            },
+            {
+                question: "Aliens are ______.",
+                options: ["Citizens", "Non-citizens", "Soldiers", "Teachers"],
+                answer: "B"
+            },
+            {
+                question: "Which organ executes the laws?",
+                options: ["Legislature", "Judiciary", "Executive", "Police"],
+                answer: "C"
+            },
+            {
+                question: "Which of these is a feature of the civil service?",
+                options: ["Partisanship", "Permanence", "Political bias", "Instability"],
+                answer: "B"
+            },
+            {
+                question: "A minister is a member of the ______.",
+                options: ["Legislature", "Executive", "Judiciary", "Army"],
+                answer: "B"
+            },
+            {
+                question: "Public corporations are owned by ______.",
+                options: ["Private companies", "Individuals", "Government", "Foreigners"],
+                answer: "C"
+            },
+            {
+                question: "A polling booth is used during ______.",
+                options: ["Census", "Election", "Judgement", "Legislation"],
+                answer: "B"
+            },
+            {
+                question: "The INEC chairman is appointed by the ______.",
+                options: ["President", "Senate", "CJN", "Governor"],
+                answer: "A"
+            },
+            {
+                question: "Which of the following conducts elections in Nigeria?",
+                options: ["CBN", "INEC", "NDLEA", "FRSC"],
+                answer: "B"
+            },
+            {
+                question: "Secret ballot ensures ______.",
+                options: ["Rigging", "Intimidation", "Free choice", "Corruption"],
+                answer: "C"
+            },
+            {
+                question: "A bicameral legislature has ______.",
+                options: ["Two chambers", "One chamber", "Three chambers", "No chamber"],
+                answer: "A"
+            },
+            {
+                question: "The judiciary ensures ______.",
+                options: ["Bribery", "Justice", "Cheating", "Elections"],
+                answer: "B"
+            },
+            {
+                question: "The executive includes the ______.",
+                options: ["President", "Judge", "Speaker", "Clerk"],
+                answer: "A"
+            },
+            {
+                question: "The Nigerian Senate consists of ______ senators.",
+                options: ["109", "36", "72", "360"],
+                answer: "A"
+            },
+            {
+                question: "A bill becomes law after the president gives ______.",
+                options: ["Signature", "Assent", "Approval by police", "Court order"],
+                answer: "B"
+            },
+            {
+                question: "Local government is created to bring government ______.",
+                options: ["Closer to the people", "Farther from citizens", "To the army", "To foreigners"],
+                answer: "A"
+            },
+            {
+                question: "The head of a local government is the ______.",
+                options: ["Governor", "Chairman", "Councillor", "Minister"],
+                answer: "B"
+            },
+            {
+                question: "A councillor represents the people at the ______.",
+                options: ["State level", "Local level", "Federal level", "Court"],
+                answer: "B"
+            },
+            {
+                question: "Civil servants are expected to be ______.",
+                options: ["Political", "Non-partisan", "Biased", "Dishonest"],
+                answer: "B"
+            },
+            {
+                question: "Delegated legislation is made by the ______.",
+                options: ["Parliament only", "Bodies empowered by parliament", "Court", "Police"],
+                answer: "B"
+            },
+            {
+                question: "The independence of the judiciary means ______.",
+                options: ["Courts obey politicians", "Judges decide cases freely", "Police control courts", "Citizens rule the courts"],
+                answer: "B"
+            },
+            {
+                question: "Public service commissions handle ______.",
+                options: ["Punishment", "Employment and discipline", "Trading", "Banking"],
+                answer: "B"
+            }
+        ];
+
+        // Application state
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let studentName = "";
+        let timerInterval;
+        let timeLeft = 60 * 60; // 60 minutes in seconds
+        let questions = [];
+
+        // Background images for rotation
+        const backgroundImages = [
+            'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+            'https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2064&q=80',
+            'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+        ];
+
+        // DOM elements
+        const sections = {
+            welcome: document.getElementById('welcome-section'),
+            studentInfo: document.getElementById('student-info-section'),
+            instructions: document.getElementById('instructions-section'),
+            exam: document.getElementById('exam-section'),
+            results: document.getElementById('results-section')
+        };
+
+        // Initialize background rotation
+        let currentBgIndex = 0;
+        function rotateBackground() {
+            currentBgIndex = (currentBgIndex + 1) % backgroundImages.length;
+            document.body.style.setProperty('--bg-image', `url('${backgroundImages[currentBgIndex]}')`);
+        }
+        
+        // Rotate background every 10 seconds
+        setInterval(rotateBackground, 10000);
+
+        // Shuffle questions array
+        function shuffleQuestions() {
+            // Create a copy of the original questions
+            questions = [...originalQuestions];
+            
+            // Shuffle the questions using Fisher-Yates algorithm
+            for (let i = questions.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [questions[i], questions[j]] = [questions[j], questions[i]];
+            }
+            
+            // Initialize userAnswers array with null values
+            userAnswers = Array(questions.length).fill(null);
+        }
+
+        // Timer function
+        function startTimer() {
+            clearInterval(timerInterval);
+            timeLeft = 60 * 60; // Reset to 60 minutes
+            
+            // Show timer container and submit button
+            document.getElementById('timer-container').style.display = 'block';
+            document.getElementById('submit-container').style.display = 'block';
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                
+                document.getElementById('timer').textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    alert("Time's up! Your exam will be submitted automatically.");
+                    calculateScore();
+                }
+            }, 1000);
+        }
+
+        // Navigation functions
+        function showSection(sectionName) {
+            // Hide all sections
+            Object.values(sections).forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show the requested section
+            sections[sectionName].classList.add('active');
+            
+            // Hide timer and submit button if not in exam section
+            if (sectionName !== 'exam') {
+                document.getElementById('timer-container').style.display = 'none';
+                document.getElementById('submit-container').style.display = 'none';
+            }
+        }
+
+        // Initialize event listeners
+        document.getElementById('start-exam-btn').addEventListener('click', () => {
+            showSection('studentInfo');
+        });
+
+        document.getElementById('back-to-welcome').addEventListener('click', () => {
+            showSection('welcome');
+        });
+
+        document.getElementById('continue-to-instructions').addEventListener('click', () => {
+            // Validate form
+            const firstName = document.getElementById('first-name').value.trim();
+            const middleName = document.getElementById('middle-name').value.trim();
+            const lastName = document.getElementById('last-name').value.trim();
+            
+            let isValid = true;
+            
+            if (!firstName) {
+                document.getElementById('first-name-error').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('first-name-error').style.display = 'none';
+            }
+            
+            if (!middleName) {
+                document.getElementById('middle-name-error').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('middle-name-error').style.display = 'none';
+            }
+            
+            if (!lastName) {
+                document.getElementById('last-name-error').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('last-name-error').style.display = 'none';
+            }
+            
+            if (isValid) {
+                studentName = `${firstName} ${middleName} ${lastName}`;
+                showSection('instructions');
+            }
+        });
+
+        document.getElementById('back-to-student-info').addEventListener('click', () => {
+            showSection('studentInfo');
+        });
+
+        document.getElementById('begin-test').addEventListener('click', () => {
+            // Initialize exam with shuffled questions
+            shuffleQuestions();
+            currentQuestionIndex = 0;
+            
+            // Display student name
+            document.getElementById('display-student-name').textContent = studentName;
+            document.getElementById('results-student-name').textContent = studentName;
+            
+            // Create question navigation grid
+            createQuestionGrid();
+            
+            // Load first question
+            loadQuestion(currentQuestionIndex);
+            
+            // Start timer
+            startTimer();
+            
+            showSection('exam');
+        });
+
+        document.getElementById('prev-question').addEventListener('click', () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion(currentQuestionIndex);
+            }
+        });
+
+        document.getElementById('next-question').addEventListener('click', () => {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion(currentQuestionIndex);
+            }
+        });
+
+        document.getElementById('submit-exam').addEventListener('click', () => {
+            const confirmed = confirm("Are you sure you want to submit? You will not be able to change your answers after this.");
+            
+            if (confirmed) {
+                clearInterval(timerInterval);
+                calculateScore();
+            }
+        });
+
+        document.getElementById('restart-exam').addEventListener('click', () => {
+            clearInterval(timerInterval);
+            showSection('welcome');
+        });
+
+        // Create question navigation grid
+        function createQuestionGrid() {
+            const questionGrid = document.getElementById('question-grid');
+            questionGrid.innerHTML = '';
+            
+            for (let i = 0; i < questions.length; i++) {
+                const questionNumber = document.createElement('div');
+                questionNumber.className = 'question-number';
+                questionNumber.textContent = i + 1;
+                questionNumber.dataset.index = i;
+                
+                // Mark if answered
+                if (userAnswers[i] !== null) {
+                    questionNumber.classList.add('answered');
+                }
+                
+                // Mark current question
+                if (i === currentQuestionIndex) {
+                    questionNumber.classList.add('current');
+                }
+                
+                questionNumber.addEventListener('click', () => {
+                    currentQuestionIndex = parseInt(questionNumber.dataset.index);
+                    loadQuestion(currentQuestionIndex);
+                });
+                
+                questionGrid.appendChild(questionNumber);
+            }
+        }
+
+        // Update question navigation grid
+        function updateQuestionGrid() {
+            const questionNumbers = document.querySelectorAll('.question-number');
+            
+            questionNumbers.forEach((number, index) => {
+                number.classList.remove('current');
+                number.classList.remove('answered');
+                
+                if (index === currentQuestionIndex) {
+                    number.classList.add('current');
+                }
+                
+                if (userAnswers[index] !== null) {
+                    number.classList.add('answered');
+                }
+            });
+        }
+
+        // Exam functionality
+        function loadQuestion(index) {
+            const question = questions[index];
+            
+            // Update question counter
+            document.getElementById('question-counter').textContent = `Question ${index + 1} of ${questions.length}`;
+            
+            // Set question text
+            document.getElementById('question-text').textContent = question.question;
+            
+            // Clear options container
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            // Create option elements
+            question.options.forEach((option, optionIndex) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option';
+                
+                const optionId = `option-${index}-${optionIndex}`;
+                
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.name = `question-${index}`;
+                radio.id = optionId;
+                radio.value = String.fromCharCode(65 + optionIndex); // A, B, C, D
+                
+                // Check if this option was previously selected
+                if (userAnswers[index] === radio.value) {
+                    radio.checked = true;
+                }
+                
+                radio.addEventListener('change', () => {
+                    userAnswers[index] = radio.value;
+                    updateQuestionGrid();
+                });
+                
+                const label = document.createElement('label');
+                label.htmlFor = optionId;
+                label.textContent = `${String.fromCharCode(65 + optionIndex)}. ${option}`;
+                
+                optionDiv.appendChild(radio);
+                optionDiv.appendChild(label);
+                
+                optionsContainer.appendChild(optionDiv);
+            });
+            
+            // Update navigation buttons
+            document.getElementById('prev-question').disabled = index === 0;
+            document.getElementById('next-question').disabled = index === questions.length - 1;
+            
+            // Update question grid
+            updateQuestionGrid();
+        }
+
+        function calculateScore() {
+            let score = 0;
+            
+            for (let i = 0; i < questions.length; i++) {
+                if (userAnswers[i] === questions[i].answer) {
+                    score++;
+                }
+            }
+            
+            // Submit to Google Form (score is sent but not displayed)
+            submitToGoogleForm(studentName, "Government", `${score}/${questions.length}`);
+            
+            // Show submission status
+            document.getElementById('submission-status').style.display = 'block';
+            
+            showSection('results');
+        }
+
+        // Google Form submission function
+        function submitToGoogleForm(fullName, subject, score) {
+            const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSc-ceYVrOpCcsDj21HIqO3uq69Xrm0ue6CzNL-1x5zFIslfWw/formResponse";
+            const formData = new FormData();
+            formData.append("entry.862885683", fullName);
+            formData.append("entry.1545021484", "SS1");
+            formData.append("entry.1558221900", subject);
+            formData.append("entry.2022160530", score);
+
+            // Use no-cors so browser will not block cross-origin form POST
+            fetch(formURL, {
+                method: "POST",
+                mode: "no-cors",
+                body: formData
+            }).catch(err => console.warn("Form submission (no-cors) likely blocked for debug; data still sent."));
+        }
+    </script>
+</body>
+</html>
