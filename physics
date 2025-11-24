@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Trustworthy College - Physics CBT Exam</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f3e9;
+            color: #5d4037;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        /* Dimmed background overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            opacity: 0.4;
+            z-index: -1;
+            transition: background-image 1.5s ease-in-out;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 0 20px rgba(93, 64, 55, 0.2);
+            border-radius: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Header - Only logo */
+        .header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #d7ccc8;
+            margin-bottom: 25px;
+        }
+        
+        .logo {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+        
+        /* Sections */
+        .section {
+            display: none;
+            padding: 20px;
+        }
+        
+        .active {
+            display: block;
+        }
+        
+        /* Welcome message */
+        .welcome-message {
+            background-color: #e3f2fd;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 17px;
+            line-height: 1.8;
+            color: #5d4037;
+            border-left: 5px solid #2196f3;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background-color: #2196f3;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px 5px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn:hover {
+            background-color: #1976d2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn:focus {
+            outline: 2px solid #90caf9;
+            outline-offset: 2px;
+        }
+        
+        .btn-secondary {
+            background-color: #64b5f6;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #42a5f5;
+        }
+        
+        .btn-success {
+            background-color: #5d8c5a;
+        }
+        
+        .btn-success:hover {
+            background-color: #4a6c47;
+        }
+        
+        .btn-danger {
+            background-color: #d32f2f;
+        }
+        
+        .btn-danger:hover {
+            background-color: #b71c1c;
+        }
+        
+        .btn-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        /* Form elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #5d4037;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d7ccc8;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #faf5f0;
+            transition: border 0.3s;
+        }
+        
+        input[type="text"]:focus {
+            border-color: #2196f3;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+        }
+        
+        .error-message {
+            color: #d32f2f;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        /* Instructions */
+        .instructions {
+            background-color: #e3f2fd;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 5px solid #2196f3;
+        }
+        
+        .instructions h3 {
+            margin-bottom: 15px;
+            color: #5d4037;
+        }
+        
+        .instructions ul {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+        }
+        
+        /* Exam interface */
+        .exam-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #d7ccc8;
+        }
+        
+        .student-info {
+            font-size: 22px;
+            font-weight: bold;
+            color: #5d4037;
+            margin-bottom: 15px;
+        }
+        
+        .exam-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .question-counter {
+            font-size: 16px;
+            color: #2196f3;
+            font-weight: 600;
+        }
+        
+        .timer-container {
+            background: #2196f3;
+            color: #e3f2fd;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            display: none;
+        }
+        
+        .submit-container {
+            display: none;
+        }
+        
+        .exam-content {
+            margin-bottom: 30px;
+        }
+        
+        .question-text {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #5d4037;
+            line-height: 1.5;
+        }
+        
+        .options-container {
+            margin-left: 10px;
+        }
+        
+        .option {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+        
+        .option:hover {
+            background-color: #e3f2fd;
+        }
+        
+        .option input {
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+        
+        .option label {
+            font-weight: normal;
+            margin-bottom: 0;
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        /* Question navigation */
+        .question-navigation {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #d7ccc8;
+        }
+        
+        .question-navigation h3 {
+            margin-bottom: 15px;
+            color: #5d4037;
+            text-align: center;
+        }
+        
+        .question-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .question-number {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #bbdefb;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .question-number:hover {
+            background-color: #90caf9;
+        }
+        
+        .question-number.current {
+            background-color: #2196f3;
+            color: white;
+        }
+        
+        .question-number.answered {
+            background-color: #a5d6a7;
+            color: #2e7d32;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        /* Results */
+        .results-container {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .feedback {
+            font-size: 18px;
+            margin: 20px 0;
+            color: #5d4037;
+        }
+        
+        .submission-status {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f5e9;
+            border-radius: 8px;
+            color: #2e7d32;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .question-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            
+            .exam-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .navigation-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header with logo only -->
+        <div class="header">
+            <img src="https://raw.githubusercontent.com/ideolixlearninghub/Trustworthy_schoolsexam/main/The%20trustworthy%20school%20logo.jpg" 
+                 alt="The Trustworthy College logo" class="logo">
+        </div>
+        
+        <!-- Welcome Section -->
+        <section id="welcome-section" class="section active">
+            <div class="welcome-message">
+                "Welcome to The Trustworthy College. We pray this examination helps you demonstrate the knowledge and virtues we nurture: honesty, diligence and piety. Best of luck."
+            </div>
+            <div class="btn-container">
+                <button id="start-exam-btn" class="btn">Start Examination</button>
+            </div>
+        </section>
+        
+        <!-- Student Information Section -->
+        <section id="student-info-section" class="section">
+            <h2>Student Information</h2>
+            <p>Please provide your details to continue with the examination.</p>
+            
+            <form id="student-info-form">
+                <div class="form-group">
+                    <label for="first-name">First Name *</label>
+                    <input type="text" id="first-name" required>
+                    <div class="error-message" id="first-name-error">First name is required</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="middle-name">Middle Name *</label>
+                    <input type="text" id="middle-name" required>
+                    <div class="error-message" id="middle-name-error">Middle name is required</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="last-name">Last Name *</label>
+                    <input type="text" id="last-name" required>
+                    <div class="error-message" id="last-name-error">Last name is required</div>
+                </div>
+                
+                <div class="btn-container">
+                    <button type="button" id="back-to-welcome" class="btn btn-secondary">Back</button>
+                    <button type="button" id="continue-to-instructions" class="btn">Continue</button>
+                </div>
+            </form>
+        </section>
+        
+        <!-- Instructions Section -->
+        <section id="instructions-section" class="section">
+            <h2>Examination Instructions</h2>
+            
+            <div class="instructions">
+                <h3>Important Notes:</h3>
+                <ul>
+                    <li>This examination consists of 40 multiple-choice questions.</li>
+                    <li>You have 40 minutes to complete this examination (1 minute per question).</li>
+                    <li>Answer all questions to the best of your ability.</li>
+                    <li>Navigate between questions using the Previous and Next buttons or the question grid.</li>
+                    <li>Answered questions will be marked with green in the question grid.</li>
+                    <li>Once you submit your answers, you cannot change them.</li>
+                    <li>Ensure you have a stable internet connection throughout the examination.</li>
+                    <li>Any form of malpractice will lead to disqualification.</li>
+                </ul>
+            </div>
+            
+            <div class="btn-container">
+                <button type="button" id="back-to-student-info" class="btn btn-secondary">Back</button>
+                <button type="button" id="begin-test" class="btn">Begin Test</button>
+            </div>
+        </section>
+        
+        <!-- Exam Interface Section -->
+        <section id="exam-section" class="section">
+            <div class="exam-header">
+                <div class="student-info" id="display-student-name"></div>
+                <div class="exam-controls">
+                    <div class="question-counter" id="question-counter">Question 1 of 40</div>
+                    <div class="timer-container" id="timer-container">
+                        Time Left: <span id="timer">40:00</span>
+                    </div>
+                    <div class="submit-container" id="submit-container">
+                        <button type="button" id="submit-exam" class="btn btn-success">Submit Exam</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="exam-content">
+                <div class="question-text" id="question-text"></div>
+                
+                <div class="options-container" id="options-container">
+                    <!-- Options will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Question navigation grid after question content -->
+            <div class="question-navigation">
+                <h3>Question Navigation</h3>
+                <div class="question-grid" id="question-grid">
+                    <!-- Question numbers will be populated by JavaScript -->
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button type="button" id="prev-question" class="btn btn-secondary">Previous</button>
+                    <button type="button" id="next-question" class="btn">Next</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Results Section -->
+        <section id="results-section" class="section">
+            <div class="results-container">
+                <h2>Examination Completed</h2>
+                <div class="student-info" id="results-student-name"></div>
+                <div class="subject" id="results-subject">Physics</div>
+                
+                <div class="feedback" id="feedback-message">
+                    Thank you for completing the examination. Your results have been submitted successfully.
+                </div>
+                
+                <div class="submission-status" id="submission-status">
+                    Your score has been successfully submitted to the examination board.
+                </div>
+                
+                <div class="btn-container">
+                    <button type="button" id="restart-exam" class="btn">Take Another Exam</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // SUBJECT: Physics
+        const originalQuestions = [
+            {
+                question: "Which of the following is a fundamental physical quantity?",
+                options: ["Force", "Velocity", "Temperature", "Area"],
+                answer: "C"
+            },
+            {
+                question: "The SI unit of work done is the:",
+                options: ["Newton", "Watt", "Joule", "Volt"],
+                answer: "C"
+            },
+            {
+                question: "Which of the following units is used to measure Power?",
+                options: ["Joule per second (J/s)", "Newton-meter (Nm)", "Kilogram-meter per second (kgm/s)", "Coulomb (C)"],
+                answer: "A"
+            },
+            {
+                question: "A quantity that has magnitude but no direction is known as a:",
+                options: ["Vector quantity", "Derived quantity", "Scalar quantity", "Fundamental quantity"],
+                answer: "C"
+            },
+            {
+                question: "The force of attraction between any two masses in the universe is called:",
+                options: ["Frictional force", "Centripetal force", "Gravitational force", "Normal force"],
+                answer: "C"
+            },
+            {
+                question: "The mass of a body is 5 kg. If the acceleration due to gravity is 10 m/s/s, what is the weight of the body?",
+                options: ["0.5 N", "5 N", "10 N", "50 N"],
+                answer: "D"
+            },
+            {
+                question: "A car travels a distance of 450 m in 30 s. What is its average speed?",
+                options: ["15 m/s", "10 m/s", "420 m/s", "13,500 m/s"],
+                answer: "A"
+            },
+            {
+                question: "Which of the following is the correct definition of acceleration?",
+                options: ["Rate of change of distance", "Rate of change of displacement", "Rate of change of momentum", "Rate of change of velocity"],
+                answer: "D"
+            },
+            {
+                question: "What is the energy possessed by a body due to its motion?",
+                options: ["Potential Energy", "Mechanical Energy", "Kinetic Energy", "Heat Energy"],
+                answer: "C"
+            },
+            {
+                question: "A stone is dropped from a height. As it falls, its potential energy is converted mainly into:",
+                options: ["Chemical energy", "Heat energy", "Kinetic energy", "Sound energy"],
+                answer: "C"
+            },
+            {
+                question: "The ability of a body to do work is called:",
+                options: ["Force", "Energy", "Power", "Pressure"],
+                answer: "B"
+            },
+            {
+                question: "The unit of the derived quantity velocity is:",
+                options: ["meter (m)", "meter per second (m/s)", "meter per second per second (m/s/s)", "second (s)"],
+                answer: "B"
+            },
+            {
+                question: "A force of 20 N is used to push a box through a distance of 5 m in the direction of the force. Calculate the work done.",
+                options: ["4 J", "25 J", "100 J", "1000 J"],
+                answer: "C"
+            },
+            {
+                question: "Work done on an object is zero if the angle between the applied force and the displacement is:",
+                options: ["0 degrees", "45 degrees", "90 degrees", "180 degrees"],
+                answer: "C"
+            },
+            {
+                question: "If a moving object has a constant velocity, its acceleration must be:",
+                options: ["Positive", "Negative", "Zero", "Increasing"],
+                answer: "C"
+            },
+            {
+                question: "Which of these quantities is a Vector quantity?",
+                options: ["Speed", "Time", "Distance", "Force"],
+                answer: "D"
+            },
+            {
+                question: "The SI unit for the fundamental quantity mass is the:",
+                options: ["Gram", "Milligram", "Kilogram", "Newton"],
+                answer: "C"
+            },
+            {
+                question: "The energy stored in a stretched or compressed spring is an example of:",
+                options: ["Chemical Potential Energy", "Elastic Potential Energy", "Kinetic Energy", "Gravitational Potential Energy"],
+                answer: "B"
+            },
+            {
+                question: "A body starting from rest attains a velocity of 40 m/s after 5 s. Calculate its acceleration.",
+                options: ["8 m/s/s", "10 m/s/s", "35 m/s/s", "200 m/s/s"],
+                answer: "A"
+            },
+            {
+                question: "Power is defined as the:",
+                options: ["Force exerted over a distance", "Product of mass and velocity", "Rate of doing work", "Energy stored in a body"],
+                answer: "C"
+            },
+            {
+                question: "The distance-time graph for a body moving with constant speed is a:",
+                options: ["Curve sloping upwards", "Horizontal straight line", "Vertical straight line", "Straight line sloping upwards"],
+                answer: "D"
+            },
+            {
+                question: "Which of the following is a derived unit?",
+                options: ["Second", "Candela", "Ampere", "Newton"],
+                answer: "D"
+            },
+            {
+                question: "A push or pull that changes or tends to change the state of rest or uniform motion of a body is called:",
+                options: ["Energy", "Work", "Power", "Force"],
+                answer: "D"
+            },
+            {
+                question: "A student runs up a flight of stairs, doing 1500 J of work in 5 seconds. What is the power developed by the student?",
+                options: ["15 W", "30 W", "300 W", "7500 W"],
+                answer: "C"
+            },
+            {
+                question: "The principle of Conservation of Energy states that:",
+                options: ["Energy can be created but not destroyed.", "The total energy in a closed system increases over time.", "Energy can only be destroyed but not created.", "Energy can neither be created nor destroyed, but can be transformed from one form to another."],
+                answer: "D"
+            },
+            {
+                question: "The total distance traveled by a body is the area under its:",
+                options: ["Acceleration-time graph", "Velocity-time graph", "Distance-time graph", "Displacement-time graph"],
+                answer: "B"
+            },
+            {
+                question: "The equation that relates initial velocity (u), final velocity (v), acceleration (a), and time (t) is:",
+                options: ["v = u + at", "v squared = u squared + 2as", "s = ut + 1/2 at squared", "s = (u+v)t/2"],
+                answer: "A"
+            },
+            {
+                question: "Which of the following is NOT a form of energy?",
+                options: ["Kinetic energy", "Potential energy", "Thermal energy", "Frictional force"],
+                answer: "D"
+            },
+            {
+                question: "The seven fundamental quantities of physics include Length, Mass, Time, Electric Current, Temperature, Luminous Intensity, and:",
+                options: ["Volume", "Density", "Amount of Substance", "Pressure"],
+                answer: "C"
+            },
+            {
+                question: "If a man holds a bag of cement steady on his head for 10 minutes, the work done by the man on the bag is:",
+                options: ["Maximum", "Positive", "Negative", "Zero"],
+                answer: "D"
+            },
+            {
+                question: "Which of the following is an example of a scalar quantity?",
+                options: ["Displacement", "Velocity", "Speed", "Force"],
+                answer: "C"
+            },
+            {
+                question: "The area under a velocity-time graph represents:",
+                options: ["Acceleration", "Distance traveled", "Force applied", "Work done"],
+                answer: "B"
+            },
+            {
+                question: "The energy stored in a battery is an example of:",
+                options: ["Kinetic Energy", "Chemical Potential Energy", "Elastic Potential Energy", "Thermal Energy"],
+                answer: "B"
+            },
+            {
+                question: "The SI unit of electric current is:",
+                options: ["Volt", "Ampere", "Ohm", "Watt"],
+                answer: "B"
+            },
+            {
+                question: "Which of the following is NOT a fundamental unit?",
+                options: ["Meter", "Kilogram", "Second", "Newton"],
+                answer: "D"
+            },
+            {
+                question: "The energy conversion in a hydroelectric power station is from:",
+                options: ["Chemical to electrical energy", "Nuclear to electrical energy", "Mechanical to electrical energy", "Solar to electrical energy"],
+                answer: "C"
+            },
+            {
+                question: "The rate of change of displacement with time is called:",
+                options: ["Speed", "Velocity", "Acceleration", "Momentum"],
+                answer: "B"
+            },
+            {
+                question: "A machine that does 500 J of work in 10 seconds has a power of:",
+                options: ["5 W", "50 W", "500 W", "5000 W"],
+                answer: "B"
+            },
+            {
+                question: "Which of the following is a fundamental quantity?",
+                options: ["Area", "Volume", "Time", "Density"],
+                answer: "C"
+            },
+            {
+                question: "The energy possessed by a body due to its position is called:",
+                options: ["Kinetic Energy", "Potential Energy", "Mechanical Energy", "Thermal Energy"],
+                answer: "B"
+            }
+        ];
+
+        // Application state
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let studentName = "";
+        let timerInterval;
+        let timeLeft = 40 * 60; // 40 minutes in seconds
+        let questions = [];
+
+        // Background images for rotation
+        const backgroundImages = [
+            'https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+            'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+            'https://images.unsplash.com/photo-1509228468518-180dd4864904?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+        ];
+
+        // DOM elements
+        const sections = {
+            welcome: document.getElementById('welcome-section'),
+            studentInfo: document.getElementById('student-info-section'),
+            instructions: document.getElementById('instructions-section'),
+            exam: document.getElementById('exam-section'),
+            results: document.getElementById('results-section')
+        };
+
+        // Initialize background rotation
+        let currentBgIndex = 0;
+        function rotateBackground() {
+            currentBgIndex = (currentBgIndex + 1) % backgroundImages.length;
+            document.body.style.backgroundImage = `url('${backgroundImages[currentBgIndex]}')`;
+        }
+        
+        // Rotate background every 10 seconds
+        setInterval(rotateBackground, 10000);
+
+        // Shuffle questions array
+        function shuffleQuestions() {
+            // Create a copy of the original questions
+            questions = [...originalQuestions];
+            
+            // Shuffle the questions using Fisher-Yates algorithm
+            for (let i = questions.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [questions[i], questions[j]] = [questions[j], questions[i]];
+            }
+            
+            // Initialize userAnswers array with null values
+            userAnswers = Array(questions.length).fill(null);
+        }
+
+        // Timer function
+        function startTimer() {
+            clearInterval(timerInterval);
+            timeLeft = 40 * 60; // Reset to 40 minutes
+            
+            // Show timer container and submit button
+            document.getElementById('timer-container').style.display = 'block';
+            document.getElementById('submit-container').style.display = 'block';
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                
+                document.getElementById('timer').textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    alert("Time's up! Your exam will be submitted automatically.");
+                    calculateScore();
+                }
+            }, 1000);
+        }
+
+        // Navigation functions
+        function showSection(sectionName) {
+            // Hide all sections
+            Object.values(sections).forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show the requested section
+            sections[sectionName].classList.add('active');
+            
+            // Hide timer and submit button if not in exam section
+            if (sectionName !== 'exam') {
+                document.getElementById('timer-container').style.display = 'none';
+                document.getElementById('submit-container').style.display = 'none';
+            }
+        }
+
+        // Initialize event listeners
+        document.getElementById('start-exam-btn').addEventListener('click', () => {
+            showSection('studentInfo');
+        });
+
+        document.getElementById('back-to-welcome').addEventListener('click', () => {
+            showSection('welcome');
+        });
+
+        document.getElementById('continue-to-instructions').addEventListener('click', () => {
+            // Validate form
+            const firstName = document.getElementById('first-name').value.trim();
+            const middleName = document.getElementById('middle-name').value.trim();
+            const lastName = document.getElementById('last-name').value.trim();
+            
+            let isValid = true;
+            
+            if (!firstName) {
+                document.getElementById('first-name-error').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('first-name-error').style.display = 'none';
+            }
+            
+            if (!middleName) {
+                document.getElementById('middle-name-error').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('middle-name-error').style.display = 'none';
+            }
+            
+            if (!lastName) {
+                document.getElementById('last-name-error').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('last-name-error').style.display = 'none';
+            }
+            
+            if (isValid) {
+                studentName = `${firstName} ${middleName} ${lastName}`;
+                showSection('instructions');
+            }
+        });
+
+        document.getElementById('back-to-student-info').addEventListener('click', () => {
+            showSection('studentInfo');
+        });
+
+        document.getElementById('begin-test').addEventListener('click', () => {
+            // Initialize exam with shuffled questions
+            shuffleQuestions();
+            currentQuestionIndex = 0;
+            
+            // Display student name
+            document.getElementById('display-student-name').textContent = studentName;
+            document.getElementById('results-student-name').textContent = studentName;
+            
+            // Create question navigation grid
+            createQuestionGrid();
+            
+            // Load first question
+            loadQuestion(currentQuestionIndex);
+            
+            // Start timer
+            startTimer();
+            
+            showSection('exam');
+        });
+
+        document.getElementById('prev-question').addEventListener('click', () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion(currentQuestionIndex);
+            }
+        });
+
+        document.getElementById('next-question').addEventListener('click', () => {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion(currentQuestionIndex);
+            }
+        });
+
+        document.getElementById('submit-exam').addEventListener('click', () => {
+            const confirmed = confirm("Are you sure you want to submit? You will not be able to change your answers after this.");
+            
+            if (confirmed) {
+                clearInterval(timerInterval);
+                calculateScore();
+            }
+        });
+
+        document.getElementById('restart-exam').addEventListener('click', () => {
+            clearInterval(timerInterval);
+            showSection('welcome');
+        });
+
+        // Create question navigation grid
+        function createQuestionGrid() {
+            const questionGrid = document.getElementById('question-grid');
+            questionGrid.innerHTML = '';
+            
+            for (let i = 0; i < questions.length; i++) {
+                const questionNumber = document.createElement('div');
+                questionNumber.className = 'question-number';
+                questionNumber.textContent = i + 1;
+                questionNumber.dataset.index = i;
+                
+                // Mark if answered
+                if (userAnswers[i] !== null) {
+                    questionNumber.classList.add('answered');
+                }
+                
+                // Mark current question
+                if (i === currentQuestionIndex) {
+                    questionNumber.classList.add('current');
+                }
+                
+                questionNumber.addEventListener('click', () => {
+                    currentQuestionIndex = parseInt(questionNumber.dataset.index);
+                    loadQuestion(currentQuestionIndex);
+                });
+                
+                questionGrid.appendChild(questionNumber);
+            }
+        }
+
+        // Update question navigation grid
+        function updateQuestionGrid() {
+            const questionNumbers = document.querySelectorAll('.question-number');
+            
+            questionNumbers.forEach((number, index) => {
+                number.classList.remove('current');
+                number.classList.remove('answered');
+                
+                if (index === currentQuestionIndex) {
+                    number.classList.add('current');
+                }
+                
+                if (userAnswers[index] !== null) {
+                    number.classList.add('answered');
+                }
+            });
+        }
+
+        // Exam functionality
+        function loadQuestion(index) {
+            const question = questions[index];
+            
+            // Update question counter
+            document.getElementById('question-counter').textContent = `Question ${index + 1} of ${questions.length}`;
+            
+            // Set question text
+            document.getElementById('question-text').textContent = question.question;
+            
+            // Clear options container
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            // Create option elements
+            question.options.forEach((option, optionIndex) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option';
+                
+                const optionId = `option-${index}-${optionIndex}`;
+                
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.name = `question-${index}`;
+                radio.id = optionId;
+                radio.value = String.fromCharCode(65 + optionIndex); // A, B, C, D
+                
+                // Check if this option was previously selected
+                if (userAnswers[index] === radio.value) {
+                    radio.checked = true;
+                }
+                
+                radio.addEventListener('change', () => {
+                    userAnswers[index] = radio.value;
+                    updateQuestionGrid();
+                });
+                
+                const label = document.createElement('label');
+                label.htmlFor = optionId;
+                label.textContent = `${String.fromCharCode(65 + optionIndex)}. ${option}`;
+                
+                optionDiv.appendChild(radio);
+                optionDiv.appendChild(label);
+                
+                optionsContainer.appendChild(optionDiv);
+            });
+            
+            // Update navigation buttons
+            document.getElementById('prev-question').disabled = index === 0;
+            document.getElementById('next-question').disabled = index === questions.length - 1;
+            
+            // Update question grid
+            updateQuestionGrid();
+        }
+
+        function calculateScore() {
+            let score = 0;
+            
+            for (let i = 0; i < questions.length; i++) {
+                if (userAnswers[i] === questions[i].answer) {
+                    score++;
+                }
+            }
+            
+            // Submit to Google Form (score is sent but not displayed)
+            submitToGoogleForm(studentName, "Physics", `${score}/${questions.length}`);
+            
+            // Show submission status
+            document.getElementById('submission-status').style.display = 'block';
+            
+            showSection('results');
+        }
+
+        // Google Form submission function
+        function submitToGoogleForm(fullName, subject, score) {
+            const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSc-ceYVrOpCcsDj21HIqO3uq69Xrm0ue6CzNL-1x5zFIslfWw/formResponse";
+            const formData = new FormData();
+            formData.append("entry.862885683", fullName);
+            formData.append("entry.1545021484", "SS1");
+            formData.append("entry.1558221900", subject);
+            formData.append("entry.2022160530", score);
+
+            // Use no-cors so browser will not block cross-origin form POST
+            fetch(formURL, {
+                method: "POST",
+                mode: "no-cors",
+                body: formData
+            }).catch(err => console.warn("Form submission (no-cors) likely blocked for debug; data still sent."));
+        }
+    </script>
+</body>
+</html>
