@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Trustworthy College - Literature-in-English CBT Exam</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f3e9;
+            color: #5d4037;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        /* Dimmed background overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2028&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            opacity: 0.4; /* Dimmed background */
+            z-index: -1;
+            transition: background-image 1.5s ease-in-out;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 0 20px rgba(93, 64, 55, 0.2);
+            border-radius: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Header - Only logo */
+        .header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #d7ccc8;
+            margin-bottom: 25px;
+        }
+        
+        .logo {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+        
+        /* Sections */
+        .section {
+            display: none;
+            padding: 20px;
+        }
+        
+        .active {
+            display: block;
+        }
+        
+        /* Welcome message */
+        .welcome-message {
+            background-color: #f3e5f5;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 17px;
+            line-height: 1.8;
+            color: #5d4037;
+            border-left: 5px solid #7b1fa2;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background-color: #7b1fa2;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px 5px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn:hover {
+            background-color: #6a1b9a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn:focus {
+            outline: 2px solid #ba68c8;
+            outline-offset: 2px;
+        }
+        
+        .btn-secondary {
+            background-color: #ab47bc;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #9c27b0;
+        }
+        
+        .btn-success {
+            background-color: #5d8c5a;
+        }
+        
+        .btn-success:hover {
+            background-color: #4a6c47;
+        }
+        
+        .btn-danger {
+            background-color: #d32f2f;
+        }
+        
+        .btn-danger:hover {
+            background-color: #b71c1c;
+        }
+        
+        .btn-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        /* Form elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #5d4037;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d7ccc8;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #faf5f0;
+            transition: border 0.3s;
+        }
+        
+        input[type="text"]:focus {
+            border-color: #7b1fa2;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(123, 31, 162, 0.2);
+        }
+        
+        .error-message {
+            color: #d32f2f;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        /* Instructions */
+        .instructions {
+            background-color: #f3e5f5;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 5px solid #7b1fa2;
+        }
+        
+        .instructions h3 {
+            margin-bottom: 15px;
+            color: #5d4037;
+        }
+        
+        .instructions ul {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+        }
+        
+        /* Exam interface */
+        .exam-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #d7ccc8;
+        }
+        
+        .student-info {
+            font-size: 22px;
+            font-weight: bold;
+            color: #5d4037;
+            margin-bottom: 15px;
+        }
+        
+        .exam-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .question-counter {
+            font-size: 16px;
+            color: #7b1fa2;
+            font-weight: 600;
+        }
+        
+        .timer-container {
+            background: #7b1fa2;
+            color: #f3e5f5;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            display: none;
+        }
+        
+        .submit-container {
+            display: none;
+        }
+        
+        .exam-content {
+            margin-bottom: 30px;
+        }
+        
+        .question-text {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #5d4037;
+            line-height: 1.5;
+        }
+        
+        .options-container {
+            margin-left: 10px;
+        }
+        
+        .option {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+        
+        .option:hover {
+            background-color: #f3e5f5;
+        }
+        
+        .option input {
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+        
+        .option label {
+            font-weight: normal;
+            margin-bottom: 0;
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        /* Question navigation */
+        .question-navigation {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #d7ccc8;
+        }
+        
+        .question-navigation h3 {
+            margin-bottom: 15px;
+            color: #5d4037;
+            text-align: center;
+        }
+        
+        .question-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .question-number {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #e1bee7;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .question-number:hover {
+            background-color: #ce93d8;
+        }
+        
+        .question-number.current {
+            background-color: #7b1fa2;
+            color: white;
+        }
+        
+        .question-number.answered {
+            background-color: #a5d6a7;
+            color: #2e7d32;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        /* Results */
+        .results-container {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .feedback {
+            font-size: 18px;
+            margin: 20px 0;
+            color: #5d4037;
+        }
+        
+        .submission-status {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f5e9;
+            border-radius: 8px;
+            color: #2e7d32;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .question-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            
+            .exam-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .navigation-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header with logo only -->
+        <div class="header">
+            <img src="https://raw.githubusercontent.com/ideolixlearninghub/Trustworthy_schoolsexam/main/The%20trustworthy%20school%20logo.jpg" 
+                 alt="The Trustworthy College logo" class="logo">
+        </div>
+        
+        <!-- Welcome Section -->
+        <section id="welcome-section" class="section active">
+            <div class="welcome-message">
+                "Welcome to The Trustworthy College. We pray this examination helps you demonstrate the knowledge and virtues we nurture: honesty, diligence and piety. Best of luck."
+            </div>
+            <div class="btn-container">
+                <button id="start-exam-btn" class="btn">Start Examination</button>
+            </div>
+        </section>
+        
+        <!-- Student Information Section -->
+        <section id="student-info-section" class="section">
+            <h2>Student Information</h2>
+            <p>Please provide your details to continue with the examination.</p>
+            
+            <form id="student-info-form">
+                <div class="form-group">
+                    <label for="first-name">First Name *</label>
+                    <input type="text" id="first-name" required>
+                    <div class="error-message" id="first-name-error">First name is required</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="middle-name">Middle Name *</label>
+                    <input type="text" id="middle-name" required>
+                    <div class="error-message" id="middle-name-error">Middle name is required</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="last-name">Last Name *</label>
+                    <input type="text" id="last-name" required>
+                    <div class="error-message" id="last-name-error">Last name is required</div>
+                </div>
+                
+                <div class="btn-container">
+                    <button type="button" id="back-to-welcome" class="btn btn-secondary">Back</button>
+                    <button type="button" id="continue-to-instructions" class="btn">Continue</button>
+                </div>
+            </form>
+        </section>
+        
+        <!-- Instructions Section -->
+        <section id="instructions-section" class="section">
+            <h2>Examination Instructions</h2>
+            
+            <div class="instructions">
+                <h3>Important Notes:</h3>
+                <ul>
+                    <li>This examination consists of 40 multiple-choice questions.</li>
+                    <li>You have 40 minutes to complete this examination (1 minute per question).</li>
+                    <li>Answer all questions to the best of your ability.</li>
+                    <li>Navigate between questions using the Previous and Next buttons or the question grid.</li>
+                    <li>Answered questions will be marked with green in the question grid.</li>
+                    <li>Once you submit your answers, you cannot change them.</li>
+                    <li>Ensure you have a stable internet connection throughout the examination.</li>
+                    <li>Any form of malpractice will lead to disqualification.</li>
+                </ul>
+            </div>
+            
+            <div class="btn-container">
+                <button type="button" id="back-to-student-info" class="btn btn-secondary">Back</button>
+                <button type="button" id="begin-test" class="btn">Begin Test</button>
+            </div>
+        </section>
+        
+        <!-- Exam Interface Section -->
+        <section id="exam-section" class="section">
+            <div class="exam-header">
+                <div class="student-info" id="display-student-name"></div>
+                <div class="exam-controls">
+                    <div class="question-counter" id="question-counter">Question 1 of 40</div>
+                    <div class="timer-container" id="timer-container">
+                        Time Left: <span id="timer">40:00</span>
+                    </div>
+                    <div class="submit-container" id="submit-container">
+                        <button type="button" id="submit-exam" class="btn btn-success">Submit Exam</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="exam-content">
+                <div class="question-text" id="question-text"></div>
+                
+                <div class="options-container" id="options-container">
+                    <!-- Options will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Question navigation grid after question content -->
+            <div class="question-navigation">
+                <h3>Question Navigation</h3>
+                <div class="question-grid" id="question-grid">
+                    <!-- Question numbers will be populated by JavaScript -->
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button type="button" id="prev-question" class="btn btn-secondary">Previous</button>
+                    <button type="button" id="next-question" class="btn">Next</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Results Section -->
+        <section id="results-section" class="section">
+            <div class="results-container">
+                <h2>Examination Completed</h2>
+                <div class="student-info" id="results-student-name"></div>
+                <div class="subject" id="results-subject">Literature-in-English</div>
+                
+                <div class="feedback" id="feedback-message">
+                    Thank you for completing the examination. Your results have been submitted successfully.
+                </div>
+                
+                <div class="submission-status" id="submission-status">
+                    Your score has been successfully submitted to the examination board.
+                </div>
+                
+                <div class="btn-container">
+                    <button type="button" id="restart-exam" class="btn">Take Another Exam</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // SUBJECT: Literature-in-English
+        const originalQuestions = [
+            {
+                question: "Literature is best defined as the ______.",
+                options: ["study of life through written works", "study of numbers", "study of foreign languages", "study of history"],
+                answer: "A"
+            },
+            {
+                question: "The three major genres of literature are ______.",
+                options: ["Prose, Speech, and Poetry", "Prose, Drama, and Poetry", "Poetry, Drama, and Fiction", "Drama, Fiction, and Essays"],
+                answer: "B"
+            },
+            {
+                question: "The written form of a story told in sentences and paragraphs is called _____.",
+                options: ["Drama", "Poetry", "Prose", "Rhetoric"],
+                answer: "C"
+            },
+            {
+                question: "The genre of literature meant to be performed on stage is called ______.",
+                options: ["Drama", "Prose", "Poetry", "Fiction"],
+                answer: "A"
+            },
+            {
+                question: "A literary work written in lines and stanzas is known as ______.",
+                options: ["Prose", "Poetry", "Drama", "Nonfiction"],
+                answer: "B"
+            },
+            {
+                question: "Literature is important because it helps to ______.",
+                options: ["improve handwriting", "develop imagination", "reduce vocabulary", "destroy culture"],
+                answer: "B"
+            },
+            {
+                question: "Which of these is not a function of literature?",
+                options: ["Entertainment", "Education", "Cultural preservation", "Road construction"],
+                answer: "D"
+            },
+            {
+                question: "The ability of literature to teach moral lessons is known as its ______.",
+                options: ["didactic function", "dramatic effect", "poetic license", "narrative style"],
+                answer: "A"
+            },
+            {
+                question: "One major feature of poetry is ______.",
+                options: ["dialogue", "rhyme and rhythm", "cast list", "chapters"],
+                answer: "B"
+            },
+            {
+                question: "A key characteristic of drama is the use of ______.",
+                options: ["dialogue and stage directions", "rhyme and stanzas", "footnotes", "chapters"],
+                answer: "A"
+            },
+            {
+                question: "Prose fiction is mainly written in ______.",
+                options: ["acts and scenes", "paragraphs and chapters", "rhymes and stanzas", "speeches and instructions"],
+                answer: "B"
+            },
+            {
+                question: "An extended fictional story usually in chapters is called a ______.",
+                options: ["poem", "play", "novel", "fable"],
+                answer: "C"
+            },
+            {
+                question: "A short fictional story with fewer characters is a ______.",
+                options: ["novel", "short story", "drama", "stanza"],
+                answer: "B"
+            },
+            {
+                question: "A story that explains natural events with supernatural characters is a ______.",
+                options: ["myth", "biography", "diary", "journal"],
+                answer: "A"
+            },
+            {
+                question: "A poem that expresses strong personal emotions is called ______.",
+                options: ["narrative poem", "lyrical poem", "epic", "drama"],
+                answer: "B"
+            },
+            {
+                question: "A long narrative poem about the adventures of a hero is a/an ______.",
+                options: ["lyric", "epic", "elegy", "ode"],
+                answer: "B"
+            },
+            {
+                question: "The people who take part in a story are called ______.",
+                options: ["settings", "plots", "characters", "themes"],
+                answer: "C"
+            },
+            {
+                question: "The time and place of a story is its ______.",
+                options: ["plot", "setting", "theme", "conflict"],
+                answer: "B"
+            },
+            {
+                question: "The events arranged in a logical order in a story are called ______.",
+                options: ["plot", "character", "setting", "chorus"],
+                answer: "A"
+            },
+            {
+                question: "The central idea of a literary work is its ______.",
+                options: ["theme", "setting", "conflict", "style"],
+                answer: "A"
+            },
+            {
+                question: "The struggle between opposing forces in a story is the ______.",
+                options: ["theme", "plot", "conflict", "character"],
+                answer: "C"
+            },
+            {
+                question: "The narrator of a story is known as the ______.",
+                options: ["playwright", "speaker", "narrator/persona", "actor"],
+                answer: "C"
+            },
+            {
+                question: "When a narrator uses 'I' in telling a story, it is ______ point of view.",
+                options: ["second-person", "third-person", "first-person", "objective"],
+                answer: "C"
+            },
+            {
+                question: "A story that has a narrator who is not part of the events uses ______ point of view.",
+                options: ["first-person", "third-person", "subjective", "personal"],
+                answer: "B"
+            },
+            {
+                question: "The sequence of events leading to the highest tension in a story is called ______.",
+                options: ["resolution", "exposition", "climax", "setting"],
+                answer: "C"
+            },
+            {
+                question: "The problem in a story is usually solved at the ______.",
+                options: ["conflict", "rising action", "falling action", "resolution"],
+                answer: "D"
+            },
+            {
+                question: "Fiction refers to stories that are mainly ______.",
+                options: ["real", "imagined", "historical", "scientific"],
+                answer: "B"
+            },
+            {
+                question: "Nonfiction refers to works that are based on ______.",
+                options: ["imagination", "fantasy", "facts and real events", "rhyme"],
+                answer: "C"
+            },
+            {
+                question: "A story about a person's life written by another person is a ______.",
+                options: ["diary", "autobiography", "biography", "memoir"],
+                answer: "C"
+            },
+            {
+                question: "A story of one's life written by oneself is an ______.",
+                options: ["autobiography", "biography", "epic", "ode"],
+                answer: "A"
+            },
+            {
+                question: "Which of the following is a work of fiction?",
+                options: ["Legend", "Newspaper", "Textbook", "Biography"],
+                answer: "A"
+            },
+            {
+                question: "Which of these is a nonfiction work?",
+                options: ["Fairy tale", "Fable", "Autobiography", "Folktale"],
+                answer: "C"
+            },
+            {
+                question: "A story that teaches a moral lesson and often has animals as characters is a ______.",
+                options: ["legend", "fable", "biography", "folk drama"],
+                answer: "B"
+            },
+            {
+                question: "A story passed down orally from one generation to another is a ______.",
+                options: ["diary", "folktale", "ode", "article"],
+                answer: "B"
+            },
+            {
+                question: "A nonfiction book that teaches a school subject is a ______.",
+                options: ["legend", "textbook", "fable", "play"],
+                answer: "B"
+            },
+            {
+                question: "A literary work that recounts real events in chronological order is a ______.",
+                options: ["novel", "historical narrative", "epic", "myth"],
+                answer: "B"
+            },
+            {
+                question: "A story that explains the origin of a place or practice is known as ______.",
+                options: ["short story", "legend", "lyric", "ode"],
+                answer: "B"
+            },
+            {
+                question: "A written record of daily events kept by a person is a ______.",
+                options: ["diary", "myth", "play", "novel"],
+                answer: "A"
+            },
+            {
+                question: "Which of the following is not a prose form?",
+                options: ["Novel", "Short story", "Drama", "Biography"],
+                answer: "C"
+            },
+            {
+                question: "Literature helps preserve ______.",
+                options: ["cultural heritage", "agriculture", "engineering", "mathematics"],
+                answer: "A"
+            }
+        ];
+
+        // Application state
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let studentName = "";
+        let timerInterval;
+        let timeLeft = 40 * 60; // 40 minutes in seconds
+        let questions = [];
+
+        // Background images for rotation
+        const backgroundImages = [
+            'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2028&q=80',
+            'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80',
+            'https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2098&q=80'
+        ];
+
+        // DOM elements
+        const sections = {
+            welcome: document.getElementById('welcome-section'),
+            studentInfo: document.getElementById('student-info-section'),
+            instructions: document.getElementById('instructions-section'),
+            exam: document.getElementById('exam-section'),
+            results: document.getElementById('results-section')
+        };
+
+        // Initialize background rotation
+        let currentBgIndex = 0;
+        function rotateBackground() {
+            currentBgIndex = (currentBgIndex + 1) % backgroundImages.length;
+            document.body.style.backgroundImage = `url('${backgroundImages[currentBgIndex]}')`;
+        }
+        
+        // Rotate background every 10 seconds
+        setInterval(rotateBackground, 10000);
+
+        // Shuffle questions array
+        function shuffleQuestions() {
+            // Create a copy of the original questions
+            questions = [...originalQuestions];
+            
+            // Shuffle the questions using Fisher-Yates algorithm
+            for (let i = questions.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [questions[i], questions[j]] = [questions[j], questions[i]];
+            }
+            
+            // Initialize userAnswers array with null values
+            userAnswers = Array(questions.length).fill(null);
+        }
+
+        // Timer function
+        function startTimer() {
+            clearInterval(timerInterval);
+            timeLeft = 40 * 60; // Reset to 40 minutes
+            
+            // Show timer container and submit button
+            document.getElementById('timer-container').style.display = 'block';
+            document.getElementById('submit-container').style.display = 'block';
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                
+                document.getElementById('timer').textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    alert("Time's up! Your exam will be submitted automatically.");
+                    calculateScore();
+                }
+            }, 1000);
+        }
+
+        // Navigation functions
+        function showSection(sectionName) {
+            // Hide all sections
+            Object.values(sections).forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show the requested section
+            sections[sectionName].classList.add('active');
+            
+            // Hide timer and submit button if not in exam section
+            if (sectionName !== 'exam') {
+                document.getElementById('timer-container').style.display = 'none';
+                document.getElementById('submit-container').style.display = 'none';
+            }
+        }
+
+        // Initialize event listeners
+        document.getElementById('start-exam-btn').addEventListener('click', () => {
+            showSection('studentInfo');
+        });
+
+        document.getElementById('back-to-welcome').addEventListener('click', () => {
+            showSection('welcome');
+        });
+
+        document.getElementById('continue-to-instructions').addEventListener('click', () => {
+            // Validate form
+            const firstName = document.getElementById('first-name').value.trim();
+            const middleName = document.getElementById('middle-name').value.trim();
+            const lastName = document.getElementById('last-name').value.trim();
+            
+            let isValid = true;
+            
+            if (!firstName) {
+                document.getElementById('first-name-error').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('first-name-error').style.display = 'none';
+            }
+            
+            if (!middleName) {
+                document.getElementById('middle-name-error').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('middle-name-error').style.display = 'none';
+            }
+            
+            if (!lastName) {
+                document.getElementById('last-name-error').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('last-name-error').style.display = 'none';
+            }
+            
+            if (isValid) {
+                studentName = `${firstName} ${middleName} ${lastName}`;
+                showSection('instructions');
+            }
+        });
+
+        document.getElementById('back-to-student-info').addEventListener('click', () => {
+            showSection('studentInfo');
+        });
+
+        document.getElementById('begin-test').addEventListener('click', () => {
+            // Initialize exam with shuffled questions
+            shuffleQuestions();
+            currentQuestionIndex = 0;
+            
+            // Display student name
+            document.getElementById('display-student-name').textContent = studentName;
+            document.getElementById('results-student-name').textContent = studentName;
+            
+            // Create question navigation grid
+            createQuestionGrid();
+            
+            // Load first question
+            loadQuestion(currentQuestionIndex);
+            
+            // Start timer
+            startTimer();
+            
+            showSection('exam');
+        });
+
+        document.getElementById('prev-question').addEventListener('click', () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion(currentQuestionIndex);
+            }
+        });
+
+        document.getElementById('next-question').addEventListener('click', () => {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion(currentQuestionIndex);
+            }
+        });
+
+        document.getElementById('submit-exam').addEventListener('click', () => {
+            const confirmed = confirm("Are you sure you want to submit? You will not be able to change your answers after this.");
+            
+            if (confirmed) {
+                clearInterval(timerInterval);
+                calculateScore();
+            }
+        });
+
+        document.getElementById('restart-exam').addEventListener('click', () => {
+            clearInterval(timerInterval);
+            showSection('welcome');
+        });
+
+        // Create question navigation grid
+        function createQuestionGrid() {
+            const questionGrid = document.getElementById('question-grid');
+            questionGrid.innerHTML = '';
+            
+            for (let i = 0; i < questions.length; i++) {
+                const questionNumber = document.createElement('div');
+                questionNumber.className = 'question-number';
+                questionNumber.textContent = i + 1;
+                questionNumber.dataset.index = i;
+                
+                // Mark if answered
+                if (userAnswers[i] !== null) {
+                    questionNumber.classList.add('answered');
+                }
+                
+                // Mark current question
+                if (i === currentQuestionIndex) {
+                    questionNumber.classList.add('current');
+                }
+                
+                questionNumber.addEventListener('click', () => {
+                    currentQuestionIndex = parseInt(questionNumber.dataset.index);
+                    loadQuestion(currentQuestionIndex);
+                });
+                
+                questionGrid.appendChild(questionNumber);
+            }
+        }
+
+        // Update question navigation grid
+        function updateQuestionGrid() {
+            const questionNumbers = document.querySelectorAll('.question-number');
+            
+            questionNumbers.forEach((number, index) => {
+                number.classList.remove('current');
+                number.classList.remove('answered');
+                
+                if (index === currentQuestionIndex) {
+                    number.classList.add('current');
+                }
+                
+                if (userAnswers[index] !== null) {
+                    number.classList.add('answered');
+                }
+            });
+        }
+
+        // Exam functionality
+        function loadQuestion(index) {
+            const question = questions[index];
+            
+            // Update question counter
+            document.getElementById('question-counter').textContent = `Question ${index + 1} of ${questions.length}`;
+            
+            // Set question text
+            document.getElementById('question-text').textContent = question.question;
+            
+            // Clear options container
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            // Create option elements
+            question.options.forEach((option, optionIndex) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option';
+                
+                const optionId = `option-${index}-${optionIndex}`;
+                
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.name = `question-${index}`;
+                radio.id = optionId;
+                radio.value = String.fromCharCode(65 + optionIndex); // A, B, C, D
+                
+                // Check if this option was previously selected
+                if (userAnswers[index] === radio.value) {
+                    radio.checked = true;
+                }
+                
+                radio.addEventListener('change', () => {
+                    userAnswers[index] = radio.value;
+                    updateQuestionGrid();
+                });
+                
+                const label = document.createElement('label');
+                label.htmlFor = optionId;
+                label.textContent = `${String.fromCharCode(65 + optionIndex)}. ${option}`;
+                
+                optionDiv.appendChild(radio);
+                optionDiv.appendChild(label);
+                
+                optionsContainer.appendChild(optionDiv);
+            });
+            
+            // Update navigation buttons
+            document.getElementById('prev-question').disabled = index === 0;
+            document.getElementById('next-question').disabled = index === questions.length - 1;
+            
+            // Update question grid
+            updateQuestionGrid();
+        }
+
+        function calculateScore() {
+            let score = 0;
+            
+            for (let i = 0; i < questions.length; i++) {
+                if (userAnswers[i] === questions[i].answer) {
+                    score++;
+                }
+            }
+            
+            // Submit to Google Form (score is sent but not displayed)
+            submitToGoogleForm(studentName, "Literature-in-English", `${score}/${questions.length}`);
+            
+            // Show submission status
+            document.getElementById('submission-status').style.display = 'block';
+            
+            showSection('results');
+        }
+
+        // Google Form submission function
+        function submitToGoogleForm(fullName, subject, score) {
+            const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSc-ceYVrOpCcsDj21HIqO3uq69Xrm0ue6CzNL-1x5zFIslfWw/formResponse";
+            const formData = new FormData();
+            formData.append("entry.862885683", fullName);
+            formData.append("entry.1545021484", "SS1");
+            formData.append("entry.1558221900", subject);
+            formData.append("entry.2022160530", score);
+
+            // Use no-cors so browser will not block cross-origin form POST
+            fetch(formURL, {
+                method: "POST",
+                mode: "no-cors",
+                body: formData
+            }).catch(err => console.warn("Form submission (no-cors) likely blocked for debug; data still sent."));
+        }
+    </script>
+</body>
+</html>
