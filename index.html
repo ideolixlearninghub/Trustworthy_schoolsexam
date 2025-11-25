@@ -1,391 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trustworthy College - Subjects Portal 2025</title>
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts for Typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* --- RESET & BASICS --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Trustworthy School Exams</title>
 
-        body {
-            min-height: 100vh;
-            color: #ffffff;
-            overflow-x: hidden;
-            background-color: #1a1a1a; /* Fallback */
-        }
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #f4f6f7;
+        font-family: Arial, sans-serif;
+    }
 
-        /* --- BACKGROUND SLIDESHOW --- */
-        .background-slider {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-        }
+    header {
+        text-align: center;
+        padding: 30px 20px;
+        background: #0a472e;
+        color: white;
+    }
 
-        .bg-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            animation: slideShow 25s infinite;
-        }
+    header img {
+        width: 120px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
 
-        /* 5 Unsplash Images related to Education/College */
-        .bg-slide:nth-child(1) { 
-            background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1600&auto=format&fit=crop'); 
-            animation-delay: 0s; 
-        }
-        .bg-slide:nth-child(2) { 
-            background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1600&auto=format&fit=crop'); 
-            animation-delay: 5s; 
-        }
-        .bg-slide:nth-child(3) { 
-            background-image: url('https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1600&auto=format&fit=crop'); 
-            animation-delay: 10s; 
-        }
-        .bg-slide:nth-child(4) { 
-            background-image: url('https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1600&auto=format&fit=crop'); 
-            animation-delay: 15s; 
-        }
-        .bg-slide:nth-child(5) { 
-            background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1600&auto=format&fit=crop'); 
-            animation-delay: 20s; 
-        }
+    h1 {
+        margin: 0;
+        font-size: 28px;
+        font-weight: 600;
+    }
 
-        /* Dark overlay to make text readable */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: -1;
-        }
+    p.top-note {
+        font-size: 16px;
+        margin-top: 5px;
+        opacity: 0.9;
+    }
 
-        @keyframes slideShow {
-            0% { opacity: 0; transform: scale(1); }
-            5% { opacity: 1; }
-            20% { opacity: 1; }
-            25% { opacity: 0; transform: scale(1.05); }
-            100% { opacity: 0; }
-        }
+    .container {
+        max-width: 900px;
+        margin: 50px auto;
+        padding: 20px;
+    }
 
-        /* --- LAYOUT --- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
+    .subject-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+    }
 
-        /* --- HEADER SECTION --- */
-        header {
-            text-align: center;
-            margin-bottom: 60px;
-            position: relative;
-        }
+    .subject-card {
+        padding: 20px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        text-align: center;
+        transition: 0.2s ease;
+        border-left: 6px solid #ff8c00;
+    }
 
-        .logo-container {
-            margin-bottom: 20px;
-            display: inline-block;
-            position: relative;
-        }
+    .subject-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 5px 14px rgba(0,0,0,0.18);
+        cursor: pointer;
+    }
 
-        .logo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-        }
+    .subject-card a {
+        text-decoration: none;
+        color: #0a472e;
+        font-weight: 600;
+        font-size: 18px;
+    }
 
-        .school-name {
-            font-size: 3rem;
-            font-weight: 700;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-            margin-bottom: 5px;
-            letter-spacing: 1px;
-            background: linear-gradient(to right, #ffffff, #ffd700);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    footer {
+        margin-top: 80px;
+        text-align: center;
+        padding: 20px;
+        color: #333;
+        font-size: 14px;
+    }
+</style>
 
-        .motto {
-            font-size: 1.2rem;
-            font-style: italic;
-            color: #ffd700; /* Gold */
-            margin-bottom: 15px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .proprietress-badge {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 5px 15px;
-            border-radius: 20px;
-            backdrop-filter: blur(5px);
-            display: inline-block;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .contact-bar {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 15px;
-            font-size: 0.9rem;
-            color: #e0e0e0;
-        }
-
-        .contact-item i {
-            margin-right: 8px;
-            color: #ffd700;
-        }
-
-        /* --- GRID SYSTEM --- */
-        .subjects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            padding-bottom: 50px;
-        }
-
-        /* --- CARD DESIGN --- */
-        /* Make the link encompass the whole card and remove default link styles */
-        .subject-link {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .subject-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
-            padding: 30px;
-            height: 100%;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .subject-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-            border-color: rgba(255, 215, 0, 0.5);
-        }
-
-        .card-icon-circle {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #ffd700, #ffaa00);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: #2a1a1f;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: transform 0.4s ease;
-        }
-
-        .subject-card:hover .card-icon-circle {
-            transform: scale(1.1) rotate(10deg);
-        }
-
-        .subject-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-
-        .subject-description {
-            font-size: 0.9rem;
-            color: #ddd;
-            line-height: 1.6;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            text-align: center;
-            padding: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            background: rgba(0,0,0,0.4);
-            border-radius: 20px 20px 0 0;
-            backdrop-filter: blur(10px);
-        }
-
-        .footer-text {
-            color: #bbb;
-            margin-bottom: 10px;
-            font-size: 0.9rem;
-        }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            .school-name { font-size: 2rem; }
-            .subjects-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
-        }
-    </style>
 </head>
 <body>
 
-    <!-- Background Slider Container -->
-    <div class="background-slider">
-        <div class="bg-slide"></div>
-        <div class="bg-slide"></div>
-        <div class="bg-slide"></div>
-        <div class="bg-slide"></div>
-        <div class="bg-slide"></div>
+<header>
+    <img src="./The trustworthy school logo.jpg" alt="School Logo" />
+    <h1>The Trustworthy School Examination Portal</h1>
+    <p class="top-note">Select a subject to begin your assessment</p>
+</header>
+
+<div class="container">
+
+    <div class="subject-grid">
+
+        <div class="subject-card">
+            <a href="./mathematics/index.html">Mathematics</a>
+        </div>
+
+        <div class="subject-card">
+            <a href="./English_Language/index.html">English Language</a>
+        </div>
+
+        <div class="subject-card">
+            <a href="./biology/index.html">Biology</a>
+        </div>
+
+        <div class="subject-card">
+            <a href="./chemistry/index.html">Chemistry</a>
+        </div>
+
+        <div class="subject-card">
+            <a href="./physics/index.html">Physics</a>
+        </div>
+
+        <div class="subject-card">
+            <a href="./economics/index.html">Economics</a>
+        </div>
+
+        <div class="subject-card">
+            <a href="./government/index.html">Government</a>
+        </div>
+
+        <div class="subject-card">
+            <a href="./civic_education/index.html">Civic Education</a>
+        </div>
+
+        <div class="subject-card">
+            <a href="./data_processing/index.html">Data Processing</a>
+        </div>
+
+        <div class="subject-card">
+            <a href="./lit_in_english/index.html">Literature in English</a>
+        </div>
+
     </div>
-    <div class="overlay"></div>
+</div>
 
-    <div class="container">
-        <header>
-            <div class="logo-container">
-                <img src="https://raw.githubusercontent.com/ideolixlearninghub/Trustworthy_schoolsexam/main/The%20trustworthy%20school%20logo.jpg" alt="Trustworthy College Logo" class="logo">
-            </div>
-            
-            <h1 class="school-name">THE TRUSTWORTHY COLLEGE</h1>
-            <p class="motto">"Nurture For Piety"</p>
-            
-            <div class="contact-bar">
-                <div class="contact-item"><i class="fas fa-envelope"></i> trustworthysch16@gmail.com</div>
-                <div class="contact-item"><i class="fas fa-map-marker-alt"></i> Mowe, Ogun State</div>
-            </div>
-        </header>
+<footer>
+    © 2025 The Trustworthy School | Powered by Ideolix Learning Hub
+</footer>
 
-        <main>
-            <div class="subjects-grid">
-                
-                <!-- English Language -->
-                <!-- Note: href targets the EXACT file name shown in your folder structure -->
-                <a href="https://github.com/ideolixlearninghub/Trustworthy_schoolsexam/blob/main/English_Language" class="subject-link">
-                    <div class="subject-card">
-                        <div class="card-icon-circle"><i class="fas fa-book-open"></i></div>
-                        <h3 class="subject-title">English Language</h3>
-                        <p class="subject-description">Grammar, vocabulary, reading comprehension, and writing skills.</p>
-                    </div>
-                </a>
-
-                <!-- Mathematics -->
-                <a href="https://github.com/ideolixlearninghub/Trustworthy_schoolsexam/blob/main/mathematics" class="subject-link">
-                    <div class="subject-card">
-                        <div class="card-icon-circle"><i class="fas fa-calculator"></i></div>
-                        <h3 class="subject-title">Mathematics</h3>
-                        <p class="subject-description">Algebra, geometry, calculus, and statistical problem-solving.</p>
-                    </div>
-                </a>
-
-                <!-- Physics -->
-                <a href="https://github.com/ideolixlearninghub/Trustworthy_schoolsexam/blob/main/physics" class="subject-link">
-                    <div class="subject-card">
-                        <div class="card-icon-circle"><i class="fas fa-atom"></i></div>
-                        <h3 class="subject-title">Physics</h3>
-                        <p class="subject-description">Mechanics, thermodynamics, and modern physics concepts.</p>
-                    </div>
-                </a>
-
-                <!-- Chemistry -->
-                <a href="https://github.com/ideolixlearninghub/Trustworthy_schoolsexam/blob/main/chemistry" class="subject-link">
-                    <div class="subject-card">
-                        <div class="card-icon-circle"><i class="fas fa-flask"></i></div>
-                        <h3 class="subject-title">Chemistry</h3>
-                        <p class="subject-description">Organic, inorganic, physical chemistry, and lab techniques.</p>
-                    </div>
-                </a>
-
-                <!-- Biology -->
-                <a href="https://github.com/ideolixlearninghub/Trustworthy_schoolsexam/blob/main/biology" class="subject-link">
-                    <div class="subject-card">
-                        <div class="card-icon-circle"><i class="fas fa-dna"></i></div>
-                        <h3 class="subject-title">Biology</h3>
-                        <p class="subject-description">Cell biology, genetics, ecology, and physiological processes.</p>
-                    </div>
-                </a>
-
-                <!-- Economics -->
-                <a href="https://github.com/ideolixlearninghub/Trustworthy_schoolsexam/blob/main/economics" class="subject-link">
-                    <div class="subject-card">
-                        <div class="card-icon-circle"><i class="fas fa-chart-line"></i></div>
-                        <h3 class="subject-title">Economics</h3>
-                        <p class="subject-description">Microeconomics, macroeconomics, and market structures.</p>
-                    </div>
-                </a>
-
-                <!-- Government -->
-                <a href="https://github.com/ideolixlearninghub/Trustworthy_schoolsexam/blob/main/government" class="subject-link">
-                    <div class="subject-card">
-                        <div class="card-icon-circle"><i class="fas fa-university"></i></div>
-                        <h3 class="subject-title">Government</h3>
-                        <p class="subject-description">Political systems, governance, and public policy studies.</p>
-                    </div>
-                </a>
-
-                <!-- Civic Education -->
-                <a href="https://github.com/ideolixlearninghub/Trustworthy_schoolsexam/blob/main/civic_education" class="subject-link">
-                    <div class="subject-card">
-                        <div class="card-icon-circle"><i class="fas fa-users"></i></div>
-                        <h3 class="subject-title">Civic Education</h3>
-                        <p class="subject-description">Citizenship, rights, responsibilities, and democracy.</p>
-                    </div>
-                </a>
-
-                <!-- Literature in English -->
-                <a href="https://github.com/ideolixlearninghub/Trustworthy_schoolsexam/blob/main/lit_in_english" class="subject-link">
-                    <div class="subject-card">
-                        <div class="card-icon-circle"><i class="fas fa-feather-alt"></i></div>
-                        <h3 class="subject-title">Literature</h3>
-                        <p class="subject-description">Drama, poetry, and prose analysis and interpretation.</p>
-                    </div>
-                </a>
-
-                <!-- Data Processing -->
-                <a href="https://github.com/ideolixlearninghub/Trustworthy_schoolsexam/blob/main/data_processing" class="subject-link">
-                    <div class="subject-card">
-                        <div class="card-icon-circle"><i class="fas fa-laptop-code"></i></div>
-                        <h3 class="subject-title">Data Processing</h3>
-                        <p class="subject-description">Computing, information systems, and data analysis.</p>
-                    </div>
-                </a>
-
-            </div>
-        </main>
-
-        <footer>
-            <p class="footer-text">Trustworthy College &copy; 2025 | "Nurture For Piety"</p>
-        </footer>
-    </div>
 </body>
 </html>
