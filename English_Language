@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Trustworthy College - English Language CBT Exam</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f3e9;
+            color: #5d4037;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        /* Dimmed background overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2028&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            opacity: 0.4;
+            z-index: -1;
+            transition: background-image 1.5s ease-in-out;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 0 20px rgba(93, 64, 55, 0.2);
+            border-radius: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Header - Only logo */
+        .header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #d7ccc8;
+            margin-bottom: 25px;
+        }
+        
+        .logo {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+        
+        /* Sections */
+        .section {
+            display: none;
+            padding: 20px;
+        }
+        
+        .active {
+            display: block;
+        }
+        
+        /* Welcome message */
+        .welcome-message {
+            background-color: #f3e5f5;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 17px;
+            line-height: 1.8;
+            color: #5d4037;
+            border-left: 5px solid #7b1fa2;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background-color: #7b1fa2;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px 5px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn:hover {
+            background-color: #6a1b9a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn:focus {
+            outline: 2px solid #ba68c8;
+            outline-offset: 2px;
+        }
+        
+        .btn-secondary {
+            background-color: #ab47bc;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #9c27b0;
+        }
+        
+        .btn-success {
+            background-color: #5d8c5a;
+        }
+        
+        .btn-success:hover {
+            background-color: #4a6c47;
+        }
+        
+        .btn-danger {
+            background-color: #d32f2f;
+        }
+        
+        .btn-danger:hover {
+            background-color: #b71c1c;
+        }
+        
+        .btn-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        /* Form elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #5d4037;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d7ccc8;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #faf5f0;
+            transition: border 0.3s;
+        }
+        
+        input[type="text"]:focus {
+            border-color: #7b1fa2;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(123, 31, 162, 0.2);
+        }
+        
+        .error-message {
+            color: #d32f2f;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        /* Instructions */
+        .instructions {
+            background-color: #f3e5f5;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 5px solid #7b1fa2;
+        }
+        
+        .instructions h3 {
+            margin-bottom: 15px;
+            color: #5d4037;
+        }
+        
+        .instructions ul {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+        }
+        
+        /* Exam interface */
+        .exam-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #d7ccc8;
+        }
+        
+        .student-info {
+            font-size: 22px;
+            font-weight: bold;
+            color: #5d4037;
+            margin-bottom: 15px;
+        }
+        
+        .exam-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .question-counter {
+            font-size: 16px;
+            color: #7b1fa2;
+            font-weight: 600;
+        }
+        
+        .timer-container {
+            background: #7b1fa2;
+            color: #f3e5f5;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            display: none;
+        }
+        
+        .submit-container {
+            display: none;
+        }
+        
+        .exam-content {
+            margin-bottom: 30px;
+        }
+        
+        .question-text {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #5d4037;
+            line-height: 1.5;
+        }
+        
+        .comprehension-passage {
+            background-color: #f9f5fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border-left: 4px solid #7b1fa2;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+        
+        .comprehension-passage h3 {
+            color: #7b1fa2;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .options-container {
+            margin-left: 10px;
+        }
+        
+        .option {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+        
+        .option:hover {
+            background-color: #f3e5f5;
+        }
+        
+        .option input {
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+        
+        .option label {
+            font-weight: normal;
+            margin-bottom: 0;
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        /* Question navigation */
+        .question-navigation {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #d7ccc8;
+        }
+        
+        .question-navigation h3 {
+            margin-bottom: 15px;
+            color: #5d4037;
+            text-align: center;
+        }
+        
+        .question-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .question-number {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #e1bee7;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .question-number:hover {
+            background-color: #ce93d8;
+        }
+        
+        .question-number.current {
+            background-color: #7b1fa2;
+            color: white;
+        }
+        
+        .question-number.answered {
+            background-color: #a5d6a7;
+            color: #2e7d32;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        /* Results */
+        .results-container {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .feedback {
+            font-size: 18px;
+            margin: 20px 0;
+            color: #5d4037;
+        }
+        
+        .submission-status {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f5e9;
+            border-radius: 8px;
+            color: #2e7d32;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .question-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            
+            .exam-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .navigation-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header with logo only -->
+        <div class="header">
+            <img src="https://raw.githubusercontent.com/ideolixlearninghub/Trustworthy_schoolsexam/main/The%20trustworthy%20school%20logo.jpg" 
+                 alt="The Trustworthy College logo" class="logo">
+        </div>
+        
+        <!-- Welcome Section -->
+        <section id="welcome-section" class="section active">
+            <div class="welcome-message">
+                "Welcome to The Trustworthy College. We pray this examination helps you demonstrate the knowledge and virtues we nurture: honesty, diligence and piety. Best of luck."
+            </div>
+            <div class="btn-container">
+                <button id="start-exam-btn" class="btn">Start Examination</button>
+            </div>
+        </section>
+        
+        <!-- Student Information Section -->
+        <section id="student-info-section" class="section">
+            <h2>Student Information</h2>
+            <p>Please provide your details to continue with the examination.</p>
+            
+            <form id="student-info-form">
+                <div class="form-group">
+                    <label for="first-name">First Name *</label>
+                    <input type="text" id="first-name" required>
+                    <div class="error-message" id="first-name-error">First name is required</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="middle-name">Middle Name *</label>
+                    <input type="text" id="middle-name" required>
+                    <div class="error-message" id="middle-name-error">Middle name is required</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="last-name">Last Name *</label>
+                    <input type="text" id="last-name" required>
+                    <div class="error-message" id="last-name-error">Last name is required</div>
+                </div>
+                
+                <div class="btn-container">
+                    <button type="button" id="back-to-welcome" class="btn btn-secondary">Back</button>
+                    <button type="button" id="continue-to-instructions" class="btn">Continue</button>
+                </div>
+            </form>
+        </section>
+        
+        <!-- Instructions Section -->
+        <section id="instructions-section" class="section">
+            <h2>Examination Instructions</h2>
+            
+            <div class="instructions">
+                <h3>Important Notes:</h3>
+                <ul>
+                    <li>This examination consists of 45 multiple-choice questions.</li>
+                    <li>You have 45 minutes to complete this examination.</li>
+                    <li>Answer all questions to the best of your ability.</li>
+                    <li>Navigate between questions using the Previous and Next buttons or the question grid.</li>
+                    <li>Answered questions will be marked with green in the question grid.</li>
+                    <li>Once you submit your answers, you cannot change them.</li>
+                    <li>Ensure you have a stable internet connection throughout the examination.</li>
+                    <li>Any form of malpractice will lead to disqualification.</li>
+                </ul>
+            </div>
+            
+            <div class="btn-container">
+                <button type="button" id="back-to-student-info" class="btn btn-secondary">Back</button>
+                <button type="button" id="begin-test" class="btn">Begin Test</button>
+            </div>
+        </section>
+        
+        <!-- Exam Interface Section -->
+        <section id="exam-section" class="section">
+            <div class="exam-header">
+                <div class="student-info" id="display-student-name"></div>
+                <div class="exam-controls">
+                    <div class="question-counter" id="question-counter">Question 1 of 45</div>
+                    <div class="timer-container" id="timer-container">
+                        Time Left: <span id="timer">45:00</span>
+                    </div>
+                    <div class="submit-container" id="submit-container">
+                        <button type="button" id="submit-exam" class="btn btn-success">Submit Exam</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="exam-content">
+                <!-- Comprehension Passage (shown for questions 1-5) -->
+                <div class="comprehension-passage" id="comprehension-passage" style="display: none;">
+                    <h3>Comprehension Passage</h3>
+                    <p><strong>Worry — The Silent Killer!</strong></p>
+                    <p>It may surprise many people that a thing like worry can be a killer. This has been proved by all medical researches that worry is a major cause of heart ailments, blood pressure, rheumatism, ulcers, skin problems, asthma and many other psychosomatic diseases. Dr Alexis Carrel, a Nobel Prize winner in medicine, said, "Businessmen who do not know how to fight worry die young". But so do a lot of home-makers, lawyers and ordinary clerks who do not control this evil.</p>
+                    <p>There are several causes of worries. The fast-paced and complicated lifestyle that most people are leading today contributes largely to our anxieties. Shortages, fears, competitions, dissatisfaction everything adds to the burden on our minds. Some of these factors may be uncontrolled but most of them are within our control.</p>
+                    <p>Plato, the Greek Philosopher had foreseen this need as far back as 400 BC. He had said, "The greatest mistake physicians make is that they attempt to cure the body without attempting to cure the mind. Mind and body are one and should not be treated separately."</p>
+                    <p>This was the basis that laid the foundation-stone of the modern psychosomatic treatment. As children, we have heard the famous quotation: "A healthy mind in a healthy body." One has just to alter the saying a little, to fit in the modern times-"A healthy body depends on a healthy mind".</p>
+                    <p>Emotions like futility, frustration, anxiety, worry, fear, despair, defeat, etc are negative emotions. These affect much our mental as well as physical health. Worry especially, creates a very high degree of tension. Many a time we find ourselves unable to concentrate due to worries. Only a cool and worryless mind functions normally and to its capacity.</p>
+                </div>
+                
+                <div class="question-text" id="question-text"></div>
+                
+                <div class="options-container" id="options-container">
+                    <!-- Options will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Question navigation grid after question content -->
+            <div class="question-navigation">
+                <h3>Question Navigation</h3>
+                <div class="question-grid" id="question-grid">
+                    <!-- Question numbers will be populated by JavaScript -->
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button type="button" id="prev-question" class="btn btn-secondary">Previous</button>
+                    <button type="button" id="next-question" class="btn">Next</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Results Section -->
+        <section id="results-section" class="section">
+            <div class="results-container">
+                <h2>Examination Completed</h2>
+                <div class="student-info" id="results-student-name"></div>
+                <div class="subject" id="results-subject">English Language</div>
+                
+                <div class="feedback" id="feedback-message">
+                    Thank you for completing the examination. Your results have been submitted successfully.
+                </div>
+                
+                <div class="submission-status" id="submission-status">
+                    Your score has been successfully submitted to the examination board.
+                </div>
+                
+                <div class="btn-container">
+                    <button type="button" id="restart-exam" class="btn">Take Another Exam</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // SUBJECT: English Language
+        const originalQuestions = [
+            // Comprehension Questions (1-5)
+            {
+                question: "Complete the following statement: The causes of worry are ____.",
+                options: ["serious diseases", "fast-paced lifestyle", "shortages, fears etc", "all the above"],
+                answer: "D"
+            },
+            {
+                question: "Complete the following statement: Worry results in ___.",
+                options: ["rheumatism", "high blood pressure", "serious diseases", "all the above"],
+                answer: "D"
+            },
+            {
+                question: "Complete the following statement: Man can function and live properly if ___.",
+                options: ["he doesn't worry", "he is free of worries", "he is tension-free and worry-less", "he cares nothing about anything"],
+                answer: "C"
+            },
+            {
+                question: "Complete the following statement: The chief hurdles coming in the way of man's trying to work properly are ___.",
+                options: ["anxiety", "tension and worry", "tension, high blood pressure", "fear of diseases"],
+                answer: "B"
+            },
+            {
+                question: "The word 'futility' means ____.",
+                options: ["usefulness", "uselessness", "carelessness", "useless things"],
+                answer: "B"
+            },
+            // SECTION A: Main & Subordinate Clauses (6-13)
+            {
+                question: "A main clause must contain a subject and a ______.",
+                options: ["phrase", "verb", "modifier", "preposition"],
+                answer: "B"
+            },
+            {
+                question: "Identify the subordinate clause: 'I left the hall because I felt sick.'",
+                options: ["I left the hall", "because I felt sick", "the hall", "I felt"],
+                answer: "B"
+            },
+            {
+                question: "A subordinate clause cannot stand alone because it expresses ______.",
+                options: ["a full idea", "a partial idea", "a noun phrase", "a verb phrase"],
+                answer: "B"
+            },
+            {
+                question: "In the sentence, 'Ameer has been looking dull as if he hasn't eaten since last night,' the subordinate clause is a / an  ______.",
+                options: ["main clause", "noun clause", "Adverbial clause", "adjectival clause"],
+                answer: "C"
+            },
+            {
+                question: "'Although she is young, she is very wise.' The clause 'Although she is young' is a(n) ______.",
+                options: ["main clause", "independent clause", "subordinate clause", "noun clause"],
+                answer: "C"
+            },
+            {
+                question: "A compound sentence contains two or more ______ clauses.",
+                options: ["subordinate", "main", "adjectival", "adverbial"],
+                answer: "B"
+            },
+            {
+                question: "Which of these is a main clause?",
+                options: ["because the bell rang", "although he tried", "she passed the test", "when they arrived"],
+                answer: "C"
+            },
+            {
+                question: "Identify the main clause: 'If you come early, we will study together.'",
+                options: ["If you come early", "we will study together", "early", "study together"],
+                answer: "B"
+            },
+            // SECTION B: Adjective & Adverb Clauses (14-21)
+            {
+                question: "An adjective clause usually begins with ______.",
+                options: ["subordinators like because", "relative pronouns", "prepositions", "conjunctions"],
+                answer: "B"
+            },
+            {
+                question: "Identify the adjective clause: 'The girl who won the prize is my sister.'",
+                options: ["The girl", "who won the prize", "is my sister", "prize"],
+                answer: "B"
+            },
+            {
+                question: "An adverb clause modifies a ______.",
+                options: ["noun", "pronoun", "verb", "determiner"],
+                answer: "C"
+            },
+            {
+                question: "Which sentence contains an adverb clause of time?",
+                options: ["I will go when the rain stops.", "She is the girl who danced.", "He left because of the noise.", "The bike that is blue is mine."],
+                answer: "A"
+            },
+            {
+                question: "'She cried because she was hurt.' The subordinate clause expresses ______.",
+                options: ["condition", "purpose", "reason", "concession"],
+                answer: "C"
+            },
+            {
+                question: "'This is the teacher whom we respect.' The subordinate clause modifies ______.",
+                options: ["the verb", "the noun teacher", "the pronoun we", "the whole sentence"],
+                answer: "B"
+            },
+            {
+                question: "An adverb clause of condition is usually introduced by ______.",
+                options: ["although", "if", "when", "before"],
+                answer: "B"
+            },
+            {
+                question: "'He ran so fast that he fell.' The subordinate clause 'that he fell' expresses ______.",
+                options: ["purpose", "condition", "result", "time"],
+                answer: "C"
+            },
+            // SECTION C: Functions of Noun Phrases (22-28)
+            {
+                question: "In a sentence, a noun phrase can function as all except ______.",
+                options: ["subject", "object", "complement", "preposition"],
+                answer: "D"
+            },
+            {
+                question: "Identify the noun phrase functioning as subject: 'The tall, elegant lady greeted us.'",
+                options: ["tall", "elegant woman", "The tall, elegant lady", "greeted"],
+                answer: "C"
+            },
+            {
+                question: "In 'He bought a big black bag,' the noun phrase functions as the ______.",
+                options: ["subject", "object", "complement", "adjunct"],
+                answer: "B"
+            },
+            {
+                question: "'The boy is a genius.' The noun phrase 'a genius' is a ______.",
+                options: ["subject", "object", "subject complement", "object complement"],
+                answer: "C"
+            },
+            {
+                question: "A noun phrase after a transitive verb usually functions as ______.",
+                options: ["subject", "direct object", "adjunct", "complement"],
+                answer: "B"
+            },
+            {
+                question: "In the sentence 'We elected Faidah the captain,' 'the captain' is a(n) ______.",
+                options: ["subject complement", "object complement", "indirect object", "adjunct"],
+                answer: "B"
+            },
+            {
+                question: "Which is a noun phrase functioning as an adjunct?",
+                options: ["the man", "a new car", "last week", "the tall boy"],
+                answer: "C"
+            },
+            // SECTION D: Structure of Noun Phrases (29-33)
+            {
+                question: "A noun phrase may consist of a determiner + headword. The determiner is an example of ____ .",
+                options: ["qualifier", "intensifier", "head", "modifier"],
+                answer: "D"
+            },
+            {
+                question: "Identify the headword: 'those three excellent books'",
+                options: ["those", "three", "excellent", "books"],
+                answer: "D"
+            },
+            {
+                question: "In 'The Pupils of The Trustworthy College,' the words 'of The Trustworthy College' is a/an ______.",
+                options: ["determiner", "qualifier", "head", "modifier"],
+                answer: "B"
+            },
+            {
+                question: "Which is a correctly structured noun phrase?",
+                options: ["quickly the boy", "the beautiful new dress", "dress new beautiful the", "the sings bird"],
+                answer: "B"
+            },
+            {
+                question: "The noun phrase 'Children of these days' contains ______.",
+                options: ["HQ", "MHQ", "MH", "MQ"],
+                answer: "B"
+            },
+            // SECTION E: Idioms & Phrasal Verbs (34-39)
+            {
+                question: "'Kick the bucket' means ______.",
+                options: ["kick a pail", "die", "travel", "succeed"],
+                answer: "B"
+            },
+            {
+                question: "'Break down' as a phrasal verb means ______.",
+                options: ["to cry", "to separate parts", "to malfunction", "to destroy"],
+                answer: "C"
+            },
+            {
+                question: "'Put up with' means ______.",
+                options: ["accommodate", "tolerate", "support", "accept money"],
+                answer: "B"
+            },
+            {
+                question: "'He let the cat out of the bag' means he ______.",
+                options: ["set an animal free", "revealed a secret", "hid information", "was careless with animals"],
+                answer: "B"
+            },
+            {
+                question: "'Call off' means ______.",
+                options: ["announce", "cancel", "remind", "repeat"],
+                answer: "B"
+            },
+            {
+                question: "'Run out of' means ______.",
+                options: ["pursue someone", "exhaust supply", "escape", "leave early"],
+                answer: "B"
+            },
+            // SECTION F: Identifying Parts of Speech (40-45)
+            {
+                question: "Identify the adjective: 'The room is extremely cold today.'",
+                options: ["room", "extremely", "cold", "today"],
+                answer: "C"
+            },
+            {
+                question: "Identify the adverb: 'They arrived very late.'",
+                options: ["arrived", "very", "late", "they"],
+                answer: "B"
+            },
+            {
+                question: "Identify the preposition: 'The bag is under the table.'",
+                options: ["bag", "under", "table", "the"],
+                answer: "B"
+            },
+            {
+                question: "Identify the verb: 'Tunde plays football every weekend.'",
+                options: ["Tunde", "plays", "football", "weekend"],
+                answer: "B"
+            },
+            {
+                question: "Identify the objective personal pronoun: 'We saw them at the event.'",
+                options: ["We", "saw", "them", "event"],
+                answer: "C"
+            },
+            {
+                question: "Identify the conjunction: 'She waited because the bus was late.'",
+                options: ["waited", "because", "bus", "late"],
+                answer: "B"
+            }
+        ];
+
+        // Application state
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let studentName = "";
+        let timerInterval;
+        let timeLeft = 45 * 60; // 45 minutes in seconds
+        let questions = [];
+
+        // Background images for rotation
+        const backgroundImages = [
+            'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2028&q=80',
+            'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80',
+            'https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2098&q=80'
+        ];
+
+        // DOM elements
+        const sections = {
+            welcome: document.getElementById('welcome-section'),
+            studentInfo: document.getElementById('student-info-section'),
+            instructions: document.getElementById('instructions-section'),
+            exam: document.getElementById('exam-section'),
+            results: document.getElementById('results-section')
+        };
+
+        // Initialize background rotation
+        let currentBgIndex = 0;
+        function rotateBackground() {
+            currentBgIndex = (currentBgIndex + 1) % backgroundImages.length;
+            document.body.style.backgroundImage = `url('${backgroundImages[currentBgIndex]}')`;
+        }
+        
+        // Rotate background every 10 seconds
+        setInterval(rotateBackground, 10000);
+
+        // Shuffle questions array
+        function shuffleQuestions() {
+            // Create a copy of the original questions
+            questions = [...originalQuestions];
+            
+            // Shuffle the questions using Fisher-Yates algorithm
+            for (let i = questions.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [questions[i], questions[j]] = [questions[j], questions[i]];
+            }
+            
+            // Initialize userAnswers array with null values
+            userAnswers = Array(questions.length).fill(null);
+        }
+
+        // Timer function
+        function startTimer() {
+            clearInterval(timerInterval);
+            timeLeft = 45 * 60; // Reset to 45 minutes
+            
+            // Show timer container and submit button
+            document.getElementById('timer-container').style.display = 'block';
+            document.getElementById('submit-container').style.display = 'block';
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                
+                document.getElementById('timer').textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    alert("Time's up! Your exam will be submitted automatically.");
+                    calculateScore();
+                }
+            }, 1000);
+        }
+
+        // Navigation functions
+        function showSection(sectionName) {
+            // Hide all sections
+            Object.values(sections).forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show the requested section
+            sections[sectionName].classList.add('active');
+            
+            // Hide timer and submit button if not in exam section
+            if (sectionName !== 'exam') {
+                document.getElementById('timer-container').style.display = 'none';
+                document.getElementById('submit-container').style.display = 'none';
+            }
+        }
+
+        // Initialize event listeners
+        document.getElementById('start-exam-btn').addEventListener('click', () => {
+            showSection('studentInfo');
+        });
+
+        document.getElementById('back-to-welcome').addEventListener('click', () => {
+            showSection('welcome');
+        });
+
+        document.getElementById('continue-to-instructions').addEventListener('click', () => {
+            // Validate form
+            const firstName = document.getElementById('first-name').value.trim();
+            const middleName = document.getElementById('middle-name').value.trim();
+            const lastName = document.getElementById('last-name').value.trim();
+            
+            let isValid = true;
+            
+            if (!firstName) {
+                document.getElementById('first-name-error').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('first-name-error').style.display = 'none';
+            }
+            
+            if (!middleName) {
+                document.getElementById('middle-name-error').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('middle-name-error').style.display = 'none';
+            }
+            
+            if (!lastName) {
+                document.getElementById('last-name-error').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('last-name-error').style.display = 'none';
+            }
+            
+            if (isValid) {
+                studentName = `${firstName} ${middleName} ${lastName}`;
+                showSection('instructions');
+            }
+        });
+
+        document.getElementById('back-to-student-info').addEventListener('click', () => {
+            showSection('studentInfo');
+        });
+
+        document.getElementById('begin-test').addEventListener('click', () => {
+            // Initialize exam with shuffled questions
+            shuffleQuestions();
+            currentQuestionIndex = 0;
+            
+            // Display student name
+            document.getElementById('display-student-name').textContent = studentName;
+            document.getElementById('results-student-name').textContent = studentName;
+            
+            // Create question navigation grid
+            createQuestionGrid();
+            
+            // Load first question
+            loadQuestion(currentQuestionIndex);
+            
+            // Start timer
+            startTimer();
+            
+            showSection('exam');
+        });
+
+        document.getElementById('prev-question').addEventListener('click', () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion(currentQuestionIndex);
+            }
+        });
+
+        document.getElementById('next-question').addEventListener('click', () => {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion(currentQuestionIndex);
+            }
+        });
+
+        document.getElementById('submit-exam').addEventListener('click', () => {
+            const confirmed = confirm("Are you sure you want to submit? You will not be able to change your answers after this.");
+            
+            if (confirmed) {
+                clearInterval(timerInterval);
+                calculateScore();
+            }
+        });
+
+        document.getElementById('restart-exam').addEventListener('click', () => {
+            clearInterval(timerInterval);
+            showSection('welcome');
+        });
+
+        // Create question navigation grid
+        function createQuestionGrid() {
+            const questionGrid = document.getElementById('question-grid');
+            questionGrid.innerHTML = '';
+            
+            for (let i = 0; i < questions.length; i++) {
+                const questionNumber = document.createElement('div');
+                questionNumber.className = 'question-number';
+                questionNumber.textContent = i + 1;
+                questionNumber.dataset.index = i;
+                
+                // Mark if answered
+                if (userAnswers[i] !== null) {
+                    questionNumber.classList.add('answered');
+                }
+                
+                // Mark current question
+                if (i === currentQuestionIndex) {
+                    questionNumber.classList.add('current');
+                }
+                
+                questionNumber.addEventListener('click', () => {
+                    currentQuestionIndex = parseInt(questionNumber.dataset.index);
+                    loadQuestion(currentQuestionIndex);
+                });
+                
+                questionGrid.appendChild(questionNumber);
+            }
+        }
+
+        // Update question navigation grid
+        function updateQuestionGrid() {
+            const questionNumbers = document.querySelectorAll('.question-number');
+            
+            questionNumbers.forEach((number, index) => {
+                number.classList.remove('current');
+                number.classList.remove('answered');
+                
+                if (index === currentQuestionIndex) {
+                    number.classList.add('current');
+                }
+                
+                if (userAnswers[index] !== null) {
+                    number.classList.add('answered');
+                }
+            });
+        }
+
+        // Exam functionality
+        function loadQuestion(index) {
+            const question = questions[index];
+            
+            // Update question counter
+            document.getElementById('question-counter').textContent = `Question ${index + 1} of ${questions.length}`;
+            
+            // Show/hide comprehension passage for questions 1-5
+            const passageElement = document.getElementById('comprehension-passage');
+            if (index < 5) {
+                passageElement.style.display = 'block';
+            } else {
+                passageElement.style.display = 'none';
+            }
+            
+            // Set question text
+            document.getElementById('question-text').textContent = question.question;
+            
+            // Clear options container
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            // Create option elements
+            question.options.forEach((option, optionIndex) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option';
+                
+                const optionId = `option-${index}-${optionIndex}`;
+                
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.name = `question-${index}`;
+                radio.id = optionId;
+                radio.value = String.fromCharCode(65 + optionIndex); // A, B, C, D
+                
+                // Check if this option was previously selected
+                if (userAnswers[index] === radio.value) {
+                    radio.checked = true;
+                }
+                
+                radio.addEventListener('change', () => {
+                    userAnswers[index] = radio.value;
+                    updateQuestionGrid();
+                });
+                
+                const label = document.createElement('label');
+                label.htmlFor = optionId;
+                label.textContent = `${String.fromCharCode(65 + optionIndex)}. ${option}`;
+                
+                optionDiv.appendChild(radio);
+                optionDiv.appendChild(label);
+                
+                optionsContainer.appendChild(optionDiv);
+            });
+            
+            // Update navigation buttons
+            document.getElementById('prev-question').disabled = index === 0;
+            document.getElementById('next-question').disabled = index === questions.length - 1;
+            
+            // Update question grid
+            updateQuestionGrid();
+        }
+
+        function calculateScore() {
+            let score = 0;
+            
+            for (let i = 0; i < questions.length; i++) {
+                if (userAnswers[i] === questions[i].answer) {
+                    score++;
+                }
+            }
+            
+            // Submit to Google Form (score is sent but not displayed)
+            submitToGoogleForm(studentName, "English Language", `${score}/${questions.length}`);
+            
+            // Show submission status
+            document.getElementById('submission-status').style.display = 'block';
+            
+            showSection('results');
+        }
+
+        // Google Form submission function
+        function submitToGoogleForm(fullName, subject, score) {
+            const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSc-ceYVrOpCcsDj21HIqO3uq69Xrm0ue6CzNL-1x5zFIslfWw/formResponse";
+            const formData = new FormData();
+            formData.append("entry.862885683", fullName);
+            formData.append("entry.1545021484", "SS1");
+            formData.append("entry.1558221900", subject);
+            formData.append("entry.2022160530", score);
+
+            // Use no-cors so browser will not block cross-origin form POST
+            fetch(formURL, {
+                method: "POST",
+                mode: "no-cors",
+                body: formData
+            }).catch(err => console.warn("Form submission (no-cors) likely blocked for debug; data still sent."));
+        }
+    </script>
+</body>
+</html>
