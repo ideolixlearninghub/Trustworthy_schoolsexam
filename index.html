@@ -17,30 +17,65 @@
             background-color: #2a1a1f;
             color: #f5e6d3;
             line-height: 1.6;
-            background-image: linear-gradient(rgba(42, 26, 31, 0.85), rgba(42, 26, 31, 0.9)), 
-                              url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 800 800"><defs><filter id="a" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence baseFrequency="0.01" numOctaves="3" result="turbulence"/><feColorMatrix in="turbulence" values="0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0 0.2 0 0 0 1 0" result="colormatrix"/><feBlend in="SourceGraphic" in2="colormatrix" mode="multiply"/></filter></defs><rect width="100%" height="100%" fill="%232a1a1f" filter="url(%23a)"/></svg>');
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .background-slideshow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(42, 26, 31, 0.85), rgba(42, 26, 31, 0.9));
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
+            z-index: 1;
         }
         
         header {
             text-align: center;
             padding: 30px 0;
-            background: linear-gradient(135deg, #5d4037, #8d6e63);
+            background: linear-gradient(135deg, rgba(93, 64, 55, 0.9), rgba(141, 110, 99, 0.9));
             color: #f5e6d3;
             border-radius: 15px;
             margin-bottom: 30px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 204, 188, 0.2);
         }
         
         header::before {
@@ -139,7 +174,7 @@
         }
         
         .subject-card {
-            background: linear-gradient(145deg, #5d4037, #4e342e);
+            background: linear-gradient(145deg, rgba(93, 64, 55, 0.9), rgba(78, 52, 46, 0.9));
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
@@ -148,8 +183,9 @@
             display: flex;
             flex-direction: column;
             height: 100%;
-            border: 1px solid #8d6e63;
+            border: 1px solid rgba(141, 110, 99, 0.5);
             position: relative;
+            backdrop-filter: blur(5px);
         }
         
         .subject-card::before {
@@ -169,7 +205,7 @@
         
         .subject-icon {
             height: 140px;
-            background: linear-gradient(135deg, #8d6e63, #6d4c41);
+            background: linear-gradient(135deg, rgba(141, 110, 99, 0.8), rgba(109, 76, 65, 0.8));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -215,7 +251,7 @@
             justify-content: space-between;
             font-size: 0.85rem;
             color: #ffab91;
-            border-top: 1px solid #8d6e63;
+            border-top: 1px solid rgba(141, 110, 99, 0.5);
             padding-top: 15px;
         }
         
@@ -229,9 +265,10 @@
             padding: 25px;
             color: #f5e6d3;
             font-size: 0.95rem;
-            border-top: 1px solid #8d6e63;
+            border-top: 1px solid rgba(141, 110, 99, 0.5);
             background: rgba(93, 64, 55, 0.7);
             border-radius: 10px;
+            backdrop-filter: blur(5px);
         }
         
         .footer-links {
@@ -301,6 +338,15 @@
     </style>
 </head>
 <body>
+    <div class="background-slideshow">
+        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2064&q=80')"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"></div>
+        <div class="overlay"></div>
+    </div>
+    
     <div class="container">
         <header>
             <div class="year-badge">2025</div>
@@ -330,139 +376,139 @@
         <main>
             <div class="subjects-grid">
                 <!-- English Language -->
-                <div class="subject-card" onclick="location.href='English_Language'">
+                <a href="English_Language" class="subject-card">
                     <div class="subject-icon">📚</div>
                     <div class="subject-content">
                         <h3 class="subject-title">English Language</h3>
                         <p class="subject-description">Resources for improving grammar, vocabulary, reading comprehension, and writing skills.</p>
                         <div class="subject-meta">
-                            <span class="commit-message">Created English_Language</span>
-                            <span class="commit-date">14 minutes ago</span>
+                            <span class="commit-message">Explore Resources</span>
+                            <span class="commit-date">Updated recently</span>
                         </div>
                     </div>
-                </div>
+                </a>
                 
                 <!-- Mathematics -->
-                <div class="subject-card" onclick="location.href='mathematics'">
+                <a href="mathematics" class="subject-card">
                     <div class="subject-icon">∫</div>
                     <div class="subject-content">
                         <h3 class="subject-title">Mathematics</h3>
                         <p class="subject-description">Study materials for algebra, geometry, calculus, statistics, and mathematical problem-solving.</p>
                         <div class="subject-meta">
-                            <span class="commit-message">Created mathematics</span>
-                            <span class="commit-date">47 minutes ago</span>
+                            <span class="commit-message">Explore Resources</span>
+                            <span class="commit-date">Updated recently</span>
                         </div>
                     </div>
-                </div>
+                </a>
                 
                 <!-- Physics -->
-                <div class="subject-card" onclick="location.href='physics'">
+                <a href="physics" class="subject-card">
                     <div class="subject-icon">⚛</div>
                     <div class="subject-content">
                         <h3 class="subject-title">Physics</h3>
                         <p class="subject-description">Resources covering mechanics, thermodynamics, electromagnetism, and modern physics concepts.</p>
                         <div class="subject-meta">
-                            <span class="commit-message">Created physics</span>
-                            <span class="commit-date">46 minutes ago</span>
+                            <span class="commit-message">Explore Resources</span>
+                            <span class="commit-date">Updated recently</span>
                         </div>
                     </div>
-                </div>
+                </a>
                 
                 <!-- Chemistry -->
-                <div class="subject-card" onclick="location.href='chemistry'">
+                <a href="chemistry" class="subject-card">
                     <div class="subject-icon">🧪</div>
                     <div class="subject-content">
                         <h3 class="subject-title">Chemistry</h3>
                         <p class="subject-description">Study materials for organic, inorganic, physical chemistry, and laboratory techniques.</p>
                         <div class="subject-meta">
-                            <span class="commit-message">Created chemistry</span>
-                            <span class="commit-date">2 hours ago</span>
+                            <span class="commit-message">Explore Resources</span>
+                            <span class="commit-date">Updated recently</span>
                         </div>
                     </div>
-                </div>
+                </a>
                 
                 <!-- Biology -->
-                <div class="subject-card" onclick="location.href='biology'">
+                <a href="biology" class="subject-card">
                     <div class="subject-icon">🧬</div>
                     <div class="subject-content">
                         <h3 class="subject-title">Biology</h3>
                         <p class="subject-description">Resources covering cell biology, genetics, ecology, anatomy, and physiological processes.</p>
                         <div class="subject-meta">
-                            <span class="commit-message">Created biology</span>
-                            <span class="commit-date">2 hours ago</span>
+                            <span class="commit-message">Explore Resources</span>
+                            <span class="commit-date">Updated recently</span>
                         </div>
                     </div>
-                </div>
+                </a>
                 
                 <!-- Economics -->
-                <div class="subject-card" onclick="location.href='economics'">
+                <a href="economics" class="subject-card">
                     <div class="subject-icon">💹</div>
                     <div class="subject-content">
                         <h3 class="subject-title">Economics</h3>
                         <p class="subject-description">Study materials for microeconomics, macroeconomics, market structures, and economic theories.</p>
                         <div class="subject-meta">
-                            <span class="commit-message">Created economics</span>
-                            <span class="commit-date">2 hours ago</span>
+                            <span class="commit-message">Explore Resources</span>
+                            <span class="commit-date">Updated recently</span>
                         </div>
                     </div>
-                </div>
+                </a>
                 
                 <!-- Government -->
-                <div class="subject-card" onclick="location.href='government'">
+                <a href="government" class="subject-card">
                     <div class="subject-icon">🏛</div>
                     <div class="subject-content">
                         <h3 class="subject-title">Government</h3>
                         <p class="subject-description">Resources on political systems, governance structures, public policy, and civic institutions.</p>
                         <div class="subject-meta">
-                            <span class="commit-message">Created government</span>
-                            <span class="commit-date">2 hours ago</span>
+                            <span class="commit-message">Explore Resources</span>
+                            <span class="commit-date">Updated recently</span>
                         </div>
                     </div>
-                </div>
+                </a>
                 
                 <!-- Civic Education -->
-                <div class="subject-card" onclick="location.href='civic_education'">
+                <a href="civic_education" class="subject-card">
                     <div class="subject-icon">🗳</div>
                     <div class="subject-content">
                         <h3 class="subject-title">Civic Education</h3>
                         <p class="subject-description">Materials on citizenship, rights and responsibilities, democracy, and community engagement.</p>
                         <div class="subject-meta">
-                            <span class="commit-message">Created civic_education</span>
-                            <span class="commit-date">2 hours ago</span>
+                            <span class="commit-message">Explore Resources</span>
+                            <span class="commit-date">Updated recently</span>
                         </div>
                     </div>
-                </div>
+                </a>
                 
                 <!-- Literature in English -->
-                <div class="subject-card" onclick="location.href='lit_in_enqlish'">
+                <a href="lit_in_english" class="subject-card">
                     <div class="subject-icon">📖</div>
                     <div class="subject-content">
                         <h3 class="subject-title">Literature in English</h3>
                         <p class="subject-description">Study guides for literary analysis, poetry, drama, prose, and critical interpretation.</p>
                         <div class="subject-meta">
-                            <span class="commit-message">Created lit_in_enqlish</span>
-                            <span class="commit-date">1 hour ago</span>
+                            <span class="commit-message">Explore Resources</span>
+                            <span class="commit-date">Updated recently</span>
                         </div>
                     </div>
-                </div>
+                </a>
                 
                 <!-- Data Processing -->
-                <div class="subject-card" onclick="location.href='data_processing'">
+                <a href="data_processing" class="subject-card">
                     <div class="subject-icon">💻</div>
                     <div class="subject-content">
                         <h3 class="subject-title">Data Processing</h3>
                         <p class="subject-description">Resources for data collection, analysis, visualization, and computational thinking skills.</p>
                         <div class="subject-meta">
-                            <span class="commit-message">Created data_processing</span>
-                            <span class="commit-date">1 hour ago</span>
+                            <span class="commit-message">Explore Resources</span>
+                            <span class="commit-date">Updated recently</span>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         </main>
         
         <footer>
-            <p>Trustworthy College &copy; 2025 | "Nurture For Piety" | Last updated: 5 hours ago</p>
+            <p>Trustworthy College &copy; 2025 | "Nurture For Piety"</p>
             <div class="footer-links">
                 <a href="#" class="footer-link">Home</a>
                 <a href="#" class="footer-link">About Us</a>
@@ -471,5 +517,22 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        // Background slideshow functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            let currentSlide = 0;
+            
+            function nextSlide() {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }
+            
+            // Change slide every 5 seconds
+            setInterval(nextSlide, 5000);
+        });
+    </script>
 </body>
 </html>
